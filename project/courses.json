@@ -5,8 +5,9 @@
         "name": "Introduction to Computer Science",
         "category": "Computer Science",
         "credits": 3,
-        "description": "Fundamental concepts in computer science including algorithms, programming basics, data representation, and problem-solving techniques using Python.",
+        "description": "Fundamental programming concepts using Python.",
         "prerequisites": [],
+        "semestersOffered": ["Fall", "Spring", "Summer"],
         "sections": ["Q1", "Q2", "Q3"]
       },
       {
@@ -14,37 +15,130 @@
         "name": "Data Structures",
         "category": "Computer Science",
         "credits": 3,
-        "description": "Advanced study of data structures including linked lists, stacks, queues, trees, and graphs with algorithm analysis.",
+        "description": "Implementation of fundamental data structures.",
         "prerequisites": ["COMP 101"],
+        "semestersOffered": ["Fall", "Spring"],
         "sections": ["D1", "D2"]
+      },
+      {
+        "code": "COMP 202",
+        "name": "Algorithms",
+        "category": "Computer Science",
+        "credits": 3,
+        "description": "Design and analysis of algorithms.",
+        "prerequisites": ["COMP 201"],
+        "semestersOffered": ["Spring"],
+        "sections": ["C1", "C2"]
+      },
+      {
+        "code": "COMP 301",
+        "name": "Database Systems",
+        "category": "Computer Science",
+        "credits": 3,
+        "description": "Relational database design and SQL.",
+        "prerequisites": ["COMP 201"],
+        "semestersOffered": ["Fall"],
+        "sections": ["DB1"]
       },
       {
         "code": "MATH 101",
         "name": "Calculus I",
         "category": "Mathematics",
         "credits": 4,
-        "instructor": "Dr. Michael Chen",
-        "description": "Introduction to differential and integral calculus with applications to problems in science and engineering.",
+        "description": "Differential and integral calculus.",
         "prerequisites": [],
+        "semestersOffered": ["Fall", "Spring", "Summer"],
         "sections": ["M1", "M2"]
+      },
+      {
+        "code": "STAT 101",
+        "name": "Introduction to Statistics",
+        "category": "Mathematics",
+        "credits": 3,
+        "description": "Descriptive statistics and probability.",
+        "prerequisites": ["MATH 101"],
+        "semestersOffered": ["Fall", "Spring"],
+        "sections": ["S1", "S2"]
       },
       {
         "code": "PHYS 201",
         "name": "Classical Mechanics",
         "category": "Physics",
         "credits": 4,
-        "description": "Newtonian mechanics, conservation laws, oscillations, and gravitation with calculus-based problem solving.",
+        "description": "Newtonian mechanics and conservation laws.",
         "prerequisites": ["MATH 101"],
+        "semestersOffered": ["Fall", "Spring"],
         "sections": ["P1"]
+      },
+      {
+        "code": "CHEM 101",
+        "name": "General Chemistry",
+        "category": "Chemistry",
+        "credits": 4,
+        "description": "Atomic structure and chemical bonding.",
+        "prerequisites": [],
+        "semestersOffered": ["Fall", "Spring"],
+        "sections": ["CH1", "CH2"]
+      },
+      {
+        "code": "BIOL 101",
+        "name": "Introduction to Biology",
+        "category": "Biology",
+        "credits": 4,
+        "description": "Cell structure and genetics.",
+        "prerequisites": [],
+        "semestersOffered": ["Fall", "Spring"],
+        "sections": ["B1"]
+      },
+      {
+        "code": "BIOL 201",
+        "name": "Genetics",
+        "category": "Biology",
+        "credits": 4,
+        "description": "Mendelian and molecular genetics.",
+        "prerequisites": ["BIOL 101"],
+        "semestersOffered": ["Spring"],
+        "sections": ["B2"]
       },
       {
         "code": "ENG 101",
         "name": "Academic Writing",
         "category": "Humanities",
         "credits": 3,
-        "description": "Development of academic writing skills with emphasis on critical reading, research, and composition.",
+        "description": "Development of academic writing skills.",
         "prerequisites": [],
+        "semestersOffered": ["Fall", "Spring", "Summer"],
         "sections": ["E1", "E2", "E3"]
+      },
+      {
+        "code": "ARAB 201",
+        "name": "Advanced Arabic I",
+        "category": "Languages",
+        "credits": 3,
+        "description": "Modern Standard Arabic comprehension.",
+        "prerequisites": [],
+        "semestersOffered": ["Fall", "Spring"],
+        "sections": ["A1"]
+      },
+      {
+        "code": "ARAB 202",
+        "name": "Advanced Arabic II",
+        "category": "Languages",
+        "credits": 3,
+        "description": "Media Arabic and formal writing.",
+        "prerequisites": ["ARAB 201"],
+        "semestersOffered": ["Spring"],
+        "sections": ["A2"]
+      },
+      {
+        "code": "ISLM 101",
+        "name": "Introduction to Islamic Studies",
+        "category": "Religious Studies",
+        "credits": 3,
+        "description": "Survey of Islamic beliefs and history.",
+        "prerequisites": [],
+        "semestersOffered": ["Fall", "Spring"],
+        "sections": ["I1"]
       }
     ]
   }
