@@ -1,69 +1,114 @@
 {
-    "students": [
-      {
-        "studentId": "20210134",
-        "email": "student@qu.edu.ga",
-        "password": "student123",
-        "completedCourses": ["COMP 100"],
-        "pendingCourses": []
-      }
-    ],
-    "courses": [
-      {
-        "code": "COMP 101",
-        "title": "Introduction to Computer Science",
-        "category": "Computer Science",
-        "credits": 3,
-        "description": "This introductory course covers fundamental concepts in computer science including algorithms, programming basics, data representation, and problem-solving techniques. Students will learn programming using Python and develop foundational skills for future computer science courses.",
-        "prerequisites": [],
-        "registrationDeadline": "2023-08-25",
-        "status": "Open for registration",
-        "sections": [
-          {
-            "sectionId": "Q1",
-            "schedule": "Mon/Wed 10:00-11:30 AM",
-            "instructor": "Dr. Ahmed Hassan",
-            "availableSeats": 23,
-            "totalSeats": 30,
-            "location": "Building B, Room 134"
-          },
-          {
-            "sectionId": "Q2",
-            "schedule": "Tue/Thu 10:00-21:30 PM",
-            "instructor": "Dr. Sarah Johnson",
-            "availableSeats": 15,
-            "totalSeats": 30,
-            "location": "Building C, Room 210"
-          },
-          {
-            "sectionId": "Q3",
-            "schedule": "Mon/Wed 3:00-4:30 PM",
-            "instructor": "Dr. Ahmed Hassan",
-            "availableSeats": 8,
-            "totalSeats": 30,
-            "location": "Building B, Room 134"
-          }
-        ]
-      },
-      {
-        "code": "COMP 201",
-        "title": "Data Structures",
-        "category": "Computer Science",
-        "credits": 3,
-        "description": "Advanced study of data structures including linked lists, stacks, queues, trees, and graphs. Algorithm analysis and design techniques.",
-        "prerequisites": ["COMP 101"],
-        "registrationDeadline": "2023-08-25",
-        "status": "Open for registration",
-        "sections": [
-          {
-            "sectionId": "D1",
-            "schedule": "Mon/Wed 1:00-2:30 PM",
-            "instructor": "Dr. Sarah Johnson",
-            "availableSeats": 12,
-            "totalSeats": 25,
-            "location": "Building A, Room 105"
-          }
-        ]
-      }
-    ]
-  }
+  "sections": [
+    {
+      "id": "Q1",
+      "schedule": "Mon/Wed 10:00-11:30 AM",
+      "instructor": "Dr. Ahmed Hassan",
+      "seats": 30,
+      "availableSeats": 23,
+      "deadline": "2023-08-25",
+      "location": "Building B, Room 134",
+      "status": "Open"
+    },
+    {
+      "id": "Q2",
+      "schedule": "Tue/Thu 10:00-11:30 AM",
+      "instructor": "Dr. Sarah Johnson",
+      "seats": 30,
+      "availableSeats": 15,
+      "deadline": "2023-08-25",
+      "location": "Building C, Room 210",
+      "status": "Open"
+    },
+    {
+      "id": "Q3",
+      "schedule": "Mon/Wed 3:00-4:30 PM",
+      "instructor": "Dr. Ahmed Hassan",
+      "seats": 30,
+      "availableSeats": 8,
+      "deadline": "2023-08-25",
+      "location": "Building B, Room 134",
+      "status": "Open"
+    },
+    {
+      "id": "D1",
+      "schedule": "Mon/Wed 1:00-2:30 PM",
+      "instructor": "Dr. Sarah Johnson",
+      "seats": 25,
+      "availableSeats": 12,
+      "deadline": "2023-08-25",
+      "location": "Building A, Room 105",
+      "status": "Open"
+    },
+    {
+      "id": "D2",
+      "schedule": "Tue/Thu 1:00-2:30 PM",
+      "instructor": "Dr. Robert Kim",
+      "seats": 25,
+      "availableSeats": 5,
+      "deadline": "2023-08-25",
+      "location": "Building A, Room 107",
+      "status": "Waitlist"
+    },
+    {
+      "id": "M1",
+      "schedule": "Mon/Wed/Fri 9:00-9:50 AM",
+      "instructor": "Dr. Michael Chen",
+      "seats": 40,
+      "availableSeats": 10,
+      "deadline": "2023-08-25",
+      "location": "Building D, Room 302",
+      "status": "Open"
+    },
+    {
+      "id": "M2",
+      "schedule": "Tue/Thu 11:00-12:15 PM",
+      "instructor": "Dr. Lisa Wong",
+      "seats": 35,
+      "availableSeats": 0,
+      "deadline": "2023-08-25",
+      "location": "Building D, Room 305",
+      "status": "Closed"
+    },
+    {
+      "id": "P1",
+      "schedule": "Tue/Thu 2:00-3:15 PM",
+      "instructor": "Dr. Emily Wilson",
+      "seats": 30,
+      "availableSeats": 18,
+      "deadline": "2023-08-25",
+      "location": "Building E, Room 112",
+      "status": "Open"
+    },
+    {
+      "id": "E1",
+      "schedule": "Mon/Wed 11:00-12:15 PM",
+      "instructor": "Prof. James Peterson",
+      "seats": 25,
+      "availableSeats": 3,
+      "deadline": "2023-08-25",
+      "location": "Building F, Room 201",
+      "status": "Open"
+    },
+    {
+      "id": "E2",
+      "schedule": "Tue/Thu 9:30-10:45 AM",
+      "instructor": "Prof. Maria Garcia",
+      "seats": 25,
+      "availableSeats": 0,
+      "deadline": "2023-08-25",
+      "location": "Building F, Room 203",
+      "status": "Closed"
+    },
+    {
+      "id": "E3",
+      "schedule": "Fri 1:00-3:45 PM",
+      "instructor": "Prof. James Peterson",
+      "seats": 20,
+      "availableSeats": 15,
+      "deadline": "2023-08-25",
+      "location": "Building F, Room 201",
+      "status": "Open"
+    }
+  ]
+}
