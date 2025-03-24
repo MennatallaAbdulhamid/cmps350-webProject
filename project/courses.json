@@ -5,7 +5,6 @@
         "name": "Introduction to Computer Science",
         "category": "Computer Science",
         "credits": 3,
-        "instructor": "Dr. Ahmed Hassan",
         "description": "Fundamental concepts in computer science including algorithms, programming basics, data representation, and problem-solving techniques using Python.",
         "prerequisites": [],
         "sections": ["Q1", "Q2", "Q3"]
@@ -15,7 +14,6 @@
         "name": "Data Structures",
         "category": "Computer Science",
         "credits": 3,
-        "instructor": "Dr. Sarah Johnson",
         "description": "Advanced study of data structures including linked lists, stacks, queues, trees, and graphs with algorithm analysis.",
         "prerequisites": ["COMP 101"],
         "sections": ["D1", "D2"]
@@ -35,7 +33,6 @@
         "name": "Classical Mechanics",
         "category": "Physics",
         "credits": 4,
-        "instructor": "Dr. Emily Wilson",
         "description": "Newtonian mechanics, conservation laws, oscillations, and gravitation with calculus-based problem solving.",
         "prerequisites": ["MATH 101"],
         "sections": ["P1"]
@@ -45,7 +42,6 @@
         "name": "Academic Writing",
         "category": "Humanities",
         "credits": 3,
-        "instructor": "Prof. James Peterson",
         "description": "Development of academic writing skills with emphasis on critical reading, research, and composition.",
         "prerequisites": [],
         "sections": ["E1", "E2", "E3"]
