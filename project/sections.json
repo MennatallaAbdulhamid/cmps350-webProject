@@ -1,0 +1,69 @@
+{
+    "students": [
+      {
+        "studentId": "20210134",
+        "email": "student@qu.edu.ga",
+        "password": "student123",
+        "completedCourses": ["COMP 100"],
+        "pendingCourses": []
+      }
+    ],
+    "courses": [
+      {
+        "code": "COMP 101",
+        "title": "Introduction to Computer Science",
+        "category": "Computer Science",
+        "credits": 3,
+        "description": "This introductory course covers fundamental concepts in computer science including algorithms, programming basics, data representation, and problem-solving techniques. Students will learn programming using Python and develop foundational skills for future computer science courses.",
+        "prerequisites": [],
+        "registrationDeadline": "2023-08-25",
+        "status": "Open for registration",
+        "sections": [
+          {
+            "sectionId": "Q1",
+            "schedule": "Mon/Wed 10:00-11:30 AM",
+            "instructor": "Dr. Ahmed Hassan",
+            "availableSeats": 23,
+            "totalSeats": 30,
+            "location": "Building B, Room 134"
+          },
+          {
+            "sectionId": "Q2",
+            "schedule": "Tue/Thu 10:00-21:30 PM",
+            "instructor": "Dr. Sarah Johnson",
+            "availableSeats": 15,
+            "totalSeats": 30,
+            "location": "Building C, Room 210"
+          },
+          {
+            "sectionId": "Q3",
+            "schedule": "Mon/Wed 3:00-4:30 PM",
+            "instructor": "Dr. Ahmed Hassan",
+            "availableSeats": 8,
+            "totalSeats": 30,
+            "location": "Building B, Room 134"
+          }
+        ]
+      },
+      {
+        "code": "COMP 201",
+        "title": "Data Structures",
+        "category": "Computer Science",
+        "credits": 3,
+        "description": "Advanced study of data structures including linked lists, stacks, queues, trees, and graphs. Algorithm analysis and design techniques.",
+        "prerequisites": ["COMP 101"],
+        "registrationDeadline": "2023-08-25",
+        "status": "Open for registration",
+        "sections": [
+          {
+            "sectionId": "D1",
+            "schedule": "Mon/Wed 1:00-2:30 PM",
+            "instructor": "Dr. Sarah Johnson",
+            "availableSeats": 12,
+            "totalSeats": 25,
+            "location": "Building A, Room 105"
+          }
+        ]
+      }
+    ]
+  }
