@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Registration</title>
-    <link rel="stylesheet" href="../css/sections.css">
+    <link rel="stylesheet" href="styles/sections.css">
 </head>
 <body>
     <div class="registration-container">
@@ -15,7 +15,7 @@
             <!-- Content will be dynamically populated here -->
         </div>
         
-        <!-- <div class="course-info">
+         <div class="course-info">
             <img src="" alt="">
             <h2>CMPS 101</h2>
             <p>Introduction to Computer Science</p>
@@ -45,7 +45,7 @@
                     <label for="deadline">Registration Deadline - August 25, 2023</label>
                 </li>
             </ul>
-        </div> -->
+        </div> 
 
         <div class="section-selection">
             <h2>Select Section</h2>
@@ -54,9 +54,8 @@
             </div>
         </div>
 
-        <!-- <div class="section-selection">
-            <h2>Select Section</h2> -->
-            <!-- <table class="section-table">
+       <div class="section-selection">
+             <table class="section-table">
                 <thead>
                     <tr>
                         <th>Section</th>
@@ -89,9 +88,9 @@
                         <td><input type="radio" name="section" value="B3"></td>
                     </tr>
                 </tbody>
-            </table> -->
+            </table> 
             
-        <!-- </div> -->
+         </div> 
 
 
         <div class="confirmation">
@@ -103,8 +102,8 @@
         </div>
 
         <div class="actions">
-            <button type="button" onclick="registerSection()">Register</button>
-            <a href="#" class="button">Cancel</a>
+            <button type="button" class="button" onclick="registerSection()">Register</button>
+            <a href="#" class="button" onclick="cancel()">Cancel</a>
         </div>
 
         <div class="note">
