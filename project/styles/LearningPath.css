@@ -1,109 +1,131 @@
 :root {
-    /* color palette using custom properties (cascading variables) */
     --scarlet-400: #E8E8E8;
-    --color-primary: #634AFF; 
-    --color-background: #FDFFFC; 
-    --color-secondary: #2E266D; 
+    --color-primary: #634AFF;
+    --color-background: #FDFFFC;
+    --color-secondary: #2E266D;
     --color-secondarybackground: rgb(246, 246, 246);
+    --text-light: #6b6b6b;
 }
 
 body {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--color-background);
-    margin: 10px;
-    padding: 20px;
+    color: var(--color-secondary);
+    margin: 0;
+    padding: 2rem;
 }
 
 h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color:var(--color-secondary);
+    font-size: 28px;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    color: var(--color-secondary);
 }
 
 h2 {
-    font-size: 20px;
-    margin-top: 30px;
-    margin-bottom: 15px;
-    color:var(--color-secondary);
+    font-size: 22px;
+    margin: 2rem 0 1rem;
+    color: var(--color-secondary);
 }
 
-.section {
-    margin-bottom: 30px;
+h3 {
+    font-size: 18px;
+    margin-top: 0;
+    color: var(--color-primary);
 }
 
-.course-list {
-    list-style-type: none;
-    padding: 0;
+p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
 }
 
-.course-item {
-    background-color: var(--color-secondarybackground);
-    margin-bottom: 10px;
-    padding: 15px;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+section {
+    margin-bottom: 3rem;
 }
 
-.course-instructor {
-    color:var(--color-primary);
+table.course-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.course-grade {
+.course-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--scarlet-400);
+    font-size: 15px;
+}
+
+.course-table tr:last-child td {
+    border-bottom: none;
+}
+
+.course-table td:nth-child(1) {
     font-weight: bold;
+    color: var(--color-secondary);
+    width: 20%;
 }
 
-.course-status {
+.course-table td:nth-child(2),
+.course-table td:nth-child(3) {
+    width: 30%;
+}
+
+.course-table td:nth-child(4) {
+    font-weight: 500;
+    color: var(--color-primary);
+    width: 10%;
+}
+
+.course-table td:nth-child(5) {
     font-style: italic;
-    color:var(--color-primary);
+    color: var(--text-light);
+    width: 10%;
 }
 
 .button {
-    background-color:var(--color-primary);
+    background-color: var(--color-primary);
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
+    border-radius: 6px;
+    font-size: 15px;
+    margin-top: 1rem;
     display: inline-block;
-    font-size: 16px;
-    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    text-decoration: none;
 }
 
 .button:hover {
-    background-color:var(--color-primary);
+    background-color: #5036e7;
 }
 
-.degree-progress {
-    background-color: var(--color-secondarybackground);
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.degree-progress h3 {
-    color: var(--color-primary);
-    margin-top: 0;
-}
-
-.gpa-calculator, .course-recommendations {
-    background-color: var(--color-secondarybackground);
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.gpa-calculator h3, .course-recommendations h3 {
-    color: var(--color-primary);
-    margin-top: 0;
-}
-.bottom-area{
+.bottom-area {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 10px;
-    
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 2rem;
+}
 
+.card, .degree-progress, .gpa-calculator, .course-recommendations {
+    background-color: var(--color-secondarybackground);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.card p,
+.degree-progress p,
+.gpa-calculator p,
+.course-recommendations p {
+    color: var(--text-light);
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+
+.bottom-area h3 {
+    color: var(--color-secondary);
 }
