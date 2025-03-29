@@ -2,6 +2,7 @@
   "sections": [
     {
       "id": "Q1",
+      "courseCode": "COMP 101",
       "schedule": "Mon/Wed 10:00-11:30 AM",
       "instructor": "Dr. Ahmed Hassan",
       "seats": 30,
@@ -12,6 +13,7 @@
     },
     {
       "id": "Q2",
+      "courseCode": "COMP 101",
       "schedule": "Tue/Thu 10:00-11:30 AM",
       "instructor": "Dr. Sarah Johnson",
       "seats": 30,
@@ -22,6 +24,7 @@
     },
     {
       "id": "Q3",
+      "courseCode": "COMP 101",
       "schedule": "Mon/Wed 3:00-4:30 PM",
       "instructor": "Dr. Ahmed Hassan",
       "seats": 30,
@@ -32,6 +35,7 @@
     },
     {
       "id": "D1",
+      "courseCode": "COMP 201",
       "schedule": "Mon/Wed 1:00-2:30 PM",
       "instructor": "Dr. Sarah Johnson",
       "seats": 25,
@@ -42,6 +46,7 @@
     },
     {
       "id": "D2",
+      "courseCode": "COMP 201",
       "schedule": "Tue/Thu 1:00-2:30 PM",
       "instructor": "Dr. Robert Kim",
       "seats": 25,
@@ -52,6 +57,7 @@
     },
     {
       "id": "M1",
+      "courseCode": "MATH 101",
       "schedule": "Mon/Wed/Fri 9:00-9:50 AM",
       "instructor": "Dr. Michael Chen",
       "seats": 40,
@@ -62,6 +68,7 @@
     },
     {
       "id": "M2",
+      "courseCode": "MATH 101",
       "schedule": "Tue/Thu 11:00-12:15 PM",
       "instructor": "Dr. Lisa Wong",
       "seats": 35,
@@ -72,6 +79,7 @@
     },
     {
       "id": "P1",
+      "courseCode": "PHYS 201",
       "schedule": "Tue/Thu 2:00-3:15 PM",
       "instructor": "Dr. Emily Wilson",
       "seats": 30,
@@ -82,6 +90,7 @@
     },
     {
       "id": "E1",
+      "courseCode": "ENG 101",
       "schedule": "Mon/Wed 11:00-12:15 PM",
       "instructor": "Prof. James Peterson",
       "seats": 25,
@@ -92,6 +101,7 @@
     },
     {
       "id": "E2",
+      "courseCode": "ENG 101",
       "schedule": "Tue/Thu 9:30-10:45 AM",
       "instructor": "Prof. Maria Garcia",
       "seats": 25,
@@ -102,6 +112,7 @@
     },
     {
       "id": "E3",
+      "courseCode": "ENG 101",
       "schedule": "Fri 1:00-3:45 PM",
       "instructor": "Prof. James Peterson",
       "seats": 20,

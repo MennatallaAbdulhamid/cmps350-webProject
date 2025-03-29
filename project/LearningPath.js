@@ -1,17 +1,29 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        // Fetch all JSON files
-        const [studentRes, courseRes, sectionRes] = await Promise.all([
-            fetch("students.json"),
-            fetch("courses.json"),
-            fetch("sections.json")
-        ]);
+        // Load or fetch data
+        let studentsData = JSON.parse(localStorage.getItem("studentsData"));
+        let coursesData = JSON.parse(localStorage.getItem("coursesData"));
+        let sectionsData = JSON.parse(localStorage.getItem("sectionsData"));
 
-        const studentsData = await studentRes.json();
-        const coursesData = await courseRes.json();
-        const sectionsData = await sectionRes.json();
+        // If data not in localStorage, fetch and store it
+        if (!studentsData || !coursesData || !sectionsData) {
+            const [studentRes, courseRes, sectionRes] = await Promise.all([
+                fetch("students.json"),
+                fetch("courses.json"),
+                fetch("sections.json")
+            ]);
 
-        // Select a specific student by studentId
+            studentsData = await studentRes.json();
+            coursesData = await courseRes.json();
+            sectionsData = await sectionRes.json();
+
+            // Save to localStorage
+            localStorage.setItem("studentsData", JSON.stringify(studentsData));
+            localStorage.setItem("coursesData", JSON.stringify(coursesData));
+            localStorage.setItem("sectionsData", JSON.stringify(sectionsData));
+        }
+
+        // Select a specific student
         const studentId = "20210007";
         const student = studentsData.students.find(s => s.studentId === studentId);
         if (!student) {
@@ -19,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             return;
         }
 
-        // Create lookup maps
+        // Lookup maps
         const courseMap = new Map();
         coursesData.courses.forEach(course => {
             courseMap.set(course.code, course);
@@ -35,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const inProgressCourses = [];
         const pendingCourses = [];
 
-        // Flatten and categorize
+        // Categorize courses
         for (const semester in student.courses) {
             const semesterCourses = student.courses[semester];
 
@@ -55,7 +67,6 @@ document.addEventListener("DOMContentLoaded", async function () {
                     semester: semester
                 };
 
-                // Categorize
                 if (course.status === "completed") {
                     completedCourses.push(displayData);
                 } else if (course.status === "enrolled") {
@@ -66,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             }
         }
 
-        // Render table rows
+        // Render function
         function renderRows(containerId, courseList) {
             const html = courseList.map(course => `
                 <tr>
@@ -95,6 +106,9 @@ document.addEventListener("DOMContentLoaded", async function () {
             <p>You have completed ${totalCredits} out of 120 required credit hours for your degree.</p>
             <a href="#" class="button">View Degree Audit</a>
         `;
+
+        // If modifications are made later (e.g. addCourse, removeCourse, etc.),
+        // localStorage.setItem("studentsData", JSON.stringify(studentsData));
 
     } catch (error) {
         console.error("Error loading or processing data:", error);

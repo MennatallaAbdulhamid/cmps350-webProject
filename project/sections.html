@@ -1,114 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Registration</title>
-    <link rel="stylesheet" href="styles/sections.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Registration</title>
+  <link rel="stylesheet" href="styles/sections.css" />
 </head>
 <body>
-    <div class="registration-container">
-        <h1>Course Registration</h1>
-         <!-- Course Info, Description, and Registration Details -->
-         
-         <div id="course-container">
-            <!-- Content will be dynamically populated here -->
-        </div>
-        
-         <div class="course-info">
-            <img src="" alt="">
-            <h2>CMPS 101</h2>
-            <p>Introduction to Computer Science</p>
-            <p><strong>Category:</strong> Computer Science</p>
-            <p><strong>Credits:</strong> 3</p>
-            <p><strong>Instructor:</strong> Dr. Ahmed Hassan</p>
-            <p><strong>Schedule:</strong> Mon/Wed 10:00-11:30 AM</p>
-            <p><strong>Location:</strong> Building B, Room 134</p>
-            <p><strong>Status:</strong> Open for registration</p>
-        </div>
+  <div class="registration-container">
+    <h1>Course Registration</h1>
 
-        <div class="course-description">
-            <h2>Course Description</h2>
-            <p>This introductory course covers fundamental concepts in computer science including algorithms, programming basics, data representation, and problem-solving techniques. Students will learn programming using Python and develop foundational skills for future computer science courses.</p>
-        </div>
+    <!-- Course Info -->
+    <div id="course-info" class="course-info"></div>
 
-        <div class="registration-details">
-            <h2>Registration Details</h2>
-            <ul>
-                <li>
-                    <label for="prerequisites">Prerequisites - None - You meet all requirements</label>
-                </li>
-                <li>
-                    <label for="seats">Available Seats - 23 of 30 seats remaining</label>
-                </li>
-                <li>
-                    <label for="deadline">Registration Deadline - August 25, 2023</label>
-                </li>
-            </ul>
-        </div> 
+    <!-- Description -->
+    <div class="course-description" id="course-description"></div>
 
-        <div class="section-selection">
-            <h2>Select Section</h2>
-            <div id="sections-container" class="sections-container">
-                <!-- Sections will be dynamically populated here -->
-            </div>
-        </div>
+    <!-- Registration Details -->
+    <div class="registration-details" id="registration-details"></div>
 
-       <div class="section-selection">
-             <table class="section-table">
-                <thead>
-                    <tr>
-                        <th>Section</th>
-                        <th>Schedule</th>
-                        <th>Instructor</th>
-                        <th>Seats</th>
-                        <th>Select</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Section B1</td>
-                        <td>Mon/Wed 10:00-11:30 AM</td>
-                        <td>Dr. Ahmed Hassan</td>
-                        <td>23 seats</td>
-                        <td><input type="radio" name="section" value="B1"></td>
-                    </tr>
-                    <tr>
-                        <td>Section B2</td>
-                        <td>Tue/Thu 10:00-21:30 PM</td>
-                        <td>Dr. Sarah Johnson</td>
-                        <td>15 seats</td>
-                        <td><input type="radio" name="section" value="B2"></td>
-                    </tr>
-                    <tr>
-                        <td>Section B3</td>
-                        <td>Mon/Wed 3:00-4:30 PM</td>
-                        <td>Dr. Ahmed Hassan</td>
-                        <td>8 seats</td>
-                        <td><input type="radio" name="section" value="B3"></td>
-                    </tr>
-                </tbody>
-            </table> 
-            
-         </div> 
-
-
-        <div class="confirmation">
-            <h2>Confirmation</h2>
-            <label for="student-id">Student ID</label>
-            <p id="student-id">20210134</p>
-            <label for="email">Email</label>
-            <p id="email">student@qu.edu.qa</p>
-        </div>
-
-        <div class="actions">
-            <button type="button" class="button" onclick="registerSection()">Register</button>
-            <a href="#" class="button" onclick="cancel()">Cancel</a>
-        </div>
-
-        <div class="note">
-            <p>Note: By registering for this course, you agree to the university’s attendance policy and academic integrity guidelines.</p>
-        </div>
+    <!-- Section List -->
+    <div class="section-selection">
+      <h2>Select Section</h2>
+      <table class="section-table">
+        <thead>
+          <tr>
+            <th>Section</th>
+            <th>Schedule</th>
+            <th>Instructor</th>
+            <th>Seats</th>
+            <th>Select</th>
+          </tr>
+        </thead>
+        <tbody id="section-table-body">
+          <!-- JS will insert section rows -->
+        </tbody>
+      </table>
     </div>
+
+    <!-- Confirmation -->
+    <div class="confirmation">
+      <h2>Confirmation</h2>
+      <label for="student-id">Student ID</label>
+      <p id="student-id">Loading...</p>
+      <label for="email">Email</label>
+      <p id="email">Loading...</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="button" onclick="registerSection()">Register</button>
+      <a href="#" class="button" onclick="cancel()">Cancel</a>
+    </div>
+
+    <div class="note">
+      <p>Note: By registering for this course, you agree to the university’s attendance policy and academic integrity guidelines.</p>
+    </div>
+  </div>
+
+  <script src="sections.js"></script>
 </body>
 </html>
