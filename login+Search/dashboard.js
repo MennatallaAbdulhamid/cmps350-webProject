@@ -10,7 +10,7 @@ const showeCourses= 6;
 fetch('courses.json')
     .then(response => response.json())
     .then(data => {
-      all_avaliable_courses = data.Courses; // Store the fetched courses in a variable
+      all_avaliable_courses = data.courses; // Store the fetched courses in a variable
       loadMoreCourses(); // Load the initial set of courses
     })
     .catch (error => {
@@ -37,8 +37,8 @@ function displayCourses(courses) {
         courseCategory.textContent = `Category: ${course.category}`;
 
         const courseCredits = document.createElement('p');
-        courseCategory.id = "CourseCredits";
-        courseCategory.textContent = `Credits: ${course.credits}`;
+        courseCredits.id = "CourseCredits";
+        courseCredits.textContent = `Credits: ${course.credits}`;
 
         const courseDescription = document.createElement('p');
         courseDescription.textContent = course.description;
@@ -74,9 +74,9 @@ function loadMoreCourses(){
 const loadMoreButton = document.querySelector('.loadMoreButton');
 loadMoreButton.addEventListener('click', loadMoreCourses);
 
-document.querySelector('.searchButton').addEventListener('click', function() {
-     const searchInput = document.querySelector("#searchInput").value.toLowerCase(); 
-     const selectCategory = document.querySelector("#categorySelect").value;
+document.getElementById('searchButton').addEventListener('click', function() {
+     const searchInput = document.getElementById("searchInput").value.toLowerCase(); 
+     const selectCategory = document.getElementById("categorySelect").value.toLowerCase();
 
       const searchedCourses = all_avaliable_courses.filter(course => {
           const searchName = course.name.toLowerCase().includes(searchInput);
