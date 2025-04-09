@@ -1,0 +1,150 @@
+{
+    "students": [
+      {
+        "studentId": "202104978",
+        "name": "Ahmed Mohamed",
+        "email": "am2104978@qu.edu.qa",
+        "password": "qu2104978",
+        "courses": {
+          "Fall 2021": {
+            "COMP 101": { "sectionId": "Q1", "grade": "B+", "creditsEarned": 3, "status": "completed" }
+          },
+          "Spring 2022": {
+            "MATH 101": { "sectionId": "M2", "grade": "A-", "creditsEarned": 4, "status": "completed" }
+          },
+          "Fall 2022": {
+            "COMP 202": { "sectionId": "C2", "grade": "A", "creditsEarned": 3, "status": "completed" }
+          },
+          "Spring 2023": {
+            "COMP 201": { "sectionId": "D2", "status": "enrolled" },
+            "ISLM 101": { "sectionId": "I1", "status": "enrolled" }
+          },
+          "Fall 2023": {
+            "COMP 301": { "preferred": ["C1"], "status": "pending", "registrationStatus": "ready_for_registration" },
+            "COMP 401": { "preferred": ["C3"], "status": "pending", "registrationStatus": "waitlisted" }
+          }
+        }
+      },
+      {
+        "studentId": "20220976",
+        "name": "Fatima Ali",
+        "email": "fa220976@qu.edu.qa",
+        "password": "qu220976",
+        "courses": {
+          "Fall 2021": {
+            "ENG 101": { "sectionId": "E3", "grade": "A", "creditsEarned": 3, "status": "completed" }
+          },
+          "Spring 2022": {
+            "COMP 101": { "sectionId": "Q3", "grade": "A-", "creditsEarned": 3, "status": "completed" }
+          },
+          "Fall 2022": {
+            "CHEM 101": { "sectionId": "CH1", "grade": "B+", "creditsEarned": 4, "status": "completed" },
+            "MATH 101": { "sectionId": "M1", "grade": "B", "creditsEarned": 4, "status": "completed" }
+          },
+          "Spring 2023": {
+            "COMP 201": { "sectionId": "D1", "status": "enrolled" },
+            "BIOL 101": { "sectionId": "B1", "status": "enrolled" }
+          },
+          "Fall 2023": {
+            "COMP 302": { "preferred": ["C2"], "status": "pending", "registrationStatus": "ready_for_registration" },
+            "COMP 402": { "preferred": ["C4"], "status": "pending", "registrationStatus": "waitlisted" }
+          }
+        }
+      },
+      {
+        "studentId": "202105886",
+        "name": "Razan Ahmed",
+        "email": "ra2105886@qu.edu.qa",
+        "password": "qu2105886",
+        "courses": {
+          "Spring 2022": {
+            "COMP 101": { "sectionId": "Q2", "grade": "C", "creditsEarned": 3, "status": "completed" }
+          },
+          "Fall 2022": {
+            "ENG 101": { "sectionId": "E1", "grade": "D+", "creditsEarned": 3, "status": "completed" }
+          },
+          "Spring 2023": {
+            "COMP 201": { "sectionId": "D3", "status": "enrolled" },
+            "MATH 101": { "sectionId": "M2", "status": "enrolled" }
+          },
+          "Fall 2023": {
+            "COMP 303": { "preferred": ["C3"], "status": "pending", "registrationStatus": "awaiting_prerequisites" },
+            "COMP 403": { "preferred": ["C5"], "status": "pending", "registrationStatus": "waitlisted" }
+          }
+        }
+      },
+      {
+        "studentId": "2020098453",
+        "name": "Nora Abdullah",
+        "email": "na20098453@qu.edu.qa",
+        "password": "qu20098453",
+        "courses": {
+          "Summer 2022": {
+            "COMP 101": { "sectionId": "Q3", "grade": "A", "creditsEarned": 3, "status": "completed" }
+          },
+          "Fall 2022": {
+            "MATH 101": { "sectionId": "M1", "grade": "A", "creditsEarned": 4, "status": "completed" },
+            "ENG 101": { "sectionId": "E2", "grade": "A-", "creditsEarned": 3, "status": "completed" }
+          },
+          "Spring 2023": {
+            "COMP 201": { "sectionId": "D2", "status": "enrolled" },
+            "PHYS 201": { "sectionId": "P1", "status": "enrolled" }
+          },
+          "Fall 2023": {
+            "COMP 304": { "preferred": ["C4"], "status": "pending", "registrationStatus": "ready_for_registration" },
+            "COMP 404": { "preferred": ["C6"], "status": "pending", "registrationStatus": "waitlisted" }
+          }
+        }
+      },
+      {
+        "studentId": "201989829",
+        "name": "Yousef Ibrahim",
+        "email": "yi1989829@qu.edu.qa",
+        "password": "qu1989829",
+        "courses": {
+          "Fall 2021": {
+            "COMP 101": { "sectionId": "Q1", "grade": "B", "creditsEarned": 3, "status": "completed" }
+          },
+          "Spring 2022": {
+            "MATH 101": { "sectionId": "M1", "grade": "B+", "creditsEarned": 4, "status": "completed" }
+          },
+          "Fall 2022": {
+            "PHYS 201": { "sectionId": "P1", "grade": "A-", "creditsEarned": 4, "status": "completed" }
+          },
+          "Spring 2023": {
+            "COMP 202": { "sectionId": "C2", "status": "enrolled" },
+            "STAT 101": { "sectionId": "S1", "status": "enrolled" }
+          },
+          "Fall 2023": {
+            "COMP 305": { "preferred": ["C5"], "status": "pending", "registrationStatus": "ready_for_registration" },
+            "COMP 405": { "preferred": ["C7"], "status": "pending", "registrationStatus": "waitlisted" }
+          }
+        }
+      
+      },
+      {
+        "studentId": "201911942",
+        "name": "Menna Ayman",
+        "email": "ma1911942@qu.edu.qa",
+        "password": "qu1911942",
+        "courses": {
+          "Summer 2022": {
+            "COMP 101": { "sectionId": "Q3", "grade": "A", "creditsEarned": 3, "status": "completed" }
+          },
+          "Fall 2022": {
+            "MATH 101": { "sectionId": "M1", "grade": "A", "creditsEarned": 4, "status": "completed" },
+            "ENG 101": { "sectionId": "E2", "grade": "A-", "creditsEarned": 3, "status": "completed" }
+          },
+          "Spring 2023": {
+            "COMP 201": { "sectionId": "D2", "status": "enrolled" },
+            "PHYS 201": { "sectionId": "P1", "status": "enrolled" }
+          },
+          "Fall 2023": {
+            "COMP 304": { "preferred": ["C4"], "status": "pending", "registrationStatus": "ready_for_registration" },
+            "COMP 404": { "preferred": ["C6"], "status": "pending", "registrationStatus": "waitlisted" }
+          }
+        }
+      }
+    ]
+  }
+  
