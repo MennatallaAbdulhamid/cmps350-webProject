@@ -3,6 +3,12 @@ document.addEventListener("DOMContentLoaded", async function () {
         const urlParams = new URLSearchParams(window.location.search);
         const courseCode = urlParams.get("courseCode");
         const studentId = urlParams.get("studentId");
+
+        // Dynamically set Learning Path link to include studentId
+        const learningPathLink = document.getElementById("learningPathLink");
+        if (learningPathLink && studentId) {
+         learningPathLink.href = `LearningPath.html?studentId=${encodeURIComponent(studentId)}`;
+            }
         
         // Load from localStorage or fetch from files
         let studentsData = JSON.parse(localStorage.getItem("studentsData"));
