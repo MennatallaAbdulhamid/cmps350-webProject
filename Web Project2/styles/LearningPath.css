@@ -6,6 +6,31 @@
     --color-secondarybackground: rgb(246, 246, 246);
     --text-light: #6b6b6b;
 }
+header{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100px ;
+}
+header img {
+    width: 120px;
+    height: 120px;
+}
+header nav a {
+text-decoration: none;
+padding: 5px;
+font-size: 16px;
+margin: 0 10px;
+border-radius: 30px;
+color : #2E266D;
+}
+header nav a i {
+    margin-right: 8px; 
+    font-size: 18px; 
+}
+header nav a:hover {
+    color: #634AFF;
+}
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

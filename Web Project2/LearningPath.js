@@ -1,14 +1,12 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
+        const user = JSON.parse(localStorage.getItem("loggedInUser"));
 
-         // Get studentId from URL
-         const urlParams = new URLSearchParams(window.location.search);
-         const studentId = urlParams.get("studentId");
- 
-         if (!studentId) {
-             alert("Student ID not provided in URL.");
-             return;
-         }
+        if (!user || user.role !== "student") {
+          alert("Access denied. Please log in as a student.");
+          window.location.href = "login.html";
+          return;
+        }
         // Load or fetch data
         let studentsData = JSON.parse(localStorage.getItem("studentsData"));
         let coursesData = JSON.parse(localStorage.getItem("coursesData"));
@@ -33,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         // Select a specific student
-        const student = studentsData.students.find(s => s.studentId === studentId);
+        const student = studentsData.students.find(s => s.email === user.email);
         if (!student) {
             console.error("Student not found.");
             return;
@@ -120,5 +118,17 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     } catch (error) {
         console.error("Error loading or processing data:", error);
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutLink = document.getElementById("logoutLink");
+
+    if (logoutLink) {
+        logoutLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "login.html";
+        });
     }
 });
