@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Course Registration</title>
+  <link rel="stylesheet" href="styles/sections.css" />
+</head>
+<body>
+  <header>
+    <img src="Images/My-removebg-preview.png" alt="Logo" class="logo">
+    <nav>
+      <a href="studentDashboard.html"><i class ="fas fa-tachometer-alt"></i>Dashboard</a>
+      <a href="LearningPath.html"><i class ="fas fa-book"></i>LearningPath</a>
+    </nav>
+  </header>
+  <div class="registration-container">
+    <h1>Course Registration</h1>
+
+    <!-- Course Info -->
+    <div id="course-info" class="course-info"></div>
+
+    <!-- Description -->
+    <div class="course-description" id="course-description"></div>
+
+    <!-- Registration Details -->
+    <div class="registration-details" id="registration-details"></div>
+
+    <!-- Section List -->
+    <div class="section-selection">
+      <h2>Select Section</h2>
+      <table class="section-table">
+        <thead>
+          <tr>
+            <th>Section</th>
+            <th>Schedule</th>
+            <th>Instructor</th>
+            <th>Seats</th>
+            <th>Select</th>
+          </tr>
+        </thead>
+        <tbody id="section-table-body">
+          <!-- JS will insert section rows -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Confirmation -->
+    <div class="confirmation">
+      <h2>Confirmation</h2>
+      <label for="student-id">Student ID</label>
+      <p id="student-id">Loading...</p>
+      <label for="email">Email</label>
+      <p id="email">Loading...</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="button" onclick="registerSection()">Register</button>
+      <a href="#" class="button" onclick="cancel()">Cancel</a>
+    </div>
+
+    <div class="note">
+      <p>Note: By registering for this course, you agree to the university’s attendance policy and academic integrity guidelines.</p>
+    </div>
+  </div>
+
+  <script src="sections.js"></script>
+</body>
+</html>
