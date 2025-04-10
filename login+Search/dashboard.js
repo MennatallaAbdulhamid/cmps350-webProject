@@ -46,6 +46,12 @@ function displayCourses(courses) {
         const ViewButton = document.createElement('button');
         ViewButton.classList.add('View-button');
         ViewButton.textContent = "View Course";
+        ViewButton.addEventListener('click', function () {
+          const studentId = "20210007"; // Replace with dynamic ID if needed
+          const courseCode = course.code;
+          const url = `sections.html?courseCode=${encodeURIComponent(courseCode)}&studentId=${encodeURIComponent(studentId)}`;
+          window.location.href = url;
+      });
 
         courseCard.appendChild(courseCode);
         courseCard.appendChild(courseName);
