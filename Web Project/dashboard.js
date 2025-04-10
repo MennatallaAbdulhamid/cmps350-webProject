@@ -1,15 +1,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-
-    // Get studentId from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const studentId = urlParams.get("studentId");
-  
-   // Dynamically set Learning Path link to include studentId
-    const learningPathLink = document.getElementById("learningPathLink");
-    if (learningPathLink && studentId) {
-    learningPathLink.href = `LearningPath.html?studentId=${encodeURIComponent(studentId)}`;
-    }
+   console.log(" loaded successfully!") 
 });
 let all_avaliable_courses = [];
 let countCourses = 0;
