@@ -1,6 +1,14 @@
 
 document.addEventListener('DOMContentLoaded', function() {
-   console.log(" loaded successfully!") 
+  const urlParams = new URLSearchParams(window.location.search);
+  const studentId = urlParams.get("studentId");
+  
+  // Dynamically set Learning Path link to include studentId
+  const learningPathLink = document.getElementById("learningPathLink");
+  if (learningPathLink && studentId) {
+      learningPathLink.href = `LearningPath.html?studentId=${encodeURIComponent(studentId)}`;
+  }
+  
 });
 let all_avaliable_courses = [];
 let countCourses = 0;
@@ -47,7 +55,6 @@ function displayCourses(courses) {
         ViewButton.classList.add('View-button');
         ViewButton.textContent = "View Course";
         ViewButton.addEventListener('click', function () {
-          const studentId = "20210007"; // Replace with dynamic ID if needed
           const courseCode = course.code;
           const url = `sections.html?courseCode=${encodeURIComponent(courseCode)}&studentId=${encodeURIComponent(studentId)}`;
           window.location.href = url;

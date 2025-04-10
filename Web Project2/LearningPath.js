@@ -1,5 +1,14 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
+
+         // Get studentId from URL
+         const urlParams = new URLSearchParams(window.location.search);
+         const studentId = urlParams.get("studentId");
+ 
+         if (!studentId) {
+             alert("Student ID not provided in URL.");
+             return;
+         }
         // Load or fetch data
         let studentsData = JSON.parse(localStorage.getItem("studentsData"));
         let coursesData = JSON.parse(localStorage.getItem("coursesData"));
@@ -24,7 +33,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         }
 
         // Select a specific student
-        const studentId = "20210007";
         const student = studentsData.students.find(s => s.studentId === studentId);
         if (!student) {
             console.error("Student not found.");
