@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        const courseCode = new URLSearchParams(window.location.search).get("courseCode") || "COMP 101";
-        const studentId = "20210007"; 
-
+        const urlParams = new URLSearchParams(window.location.search);
+        const courseCode = urlParams.get("courseCode");
+        const studentId = urlParams.get("studentId");
+        
         // Load from localStorage or fetch from files
         let studentsData = JSON.parse(localStorage.getItem("studentsData"));
         let coursesData = JSON.parse(localStorage.getItem("coursesData"));
