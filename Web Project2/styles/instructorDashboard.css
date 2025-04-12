@@ -5,7 +5,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f7fa;
+    background-color: #ffffff;
     color: #333;
 }
 
@@ -13,9 +13,7 @@ body {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-color: white;
     padding: 0.8rem 2rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo-container {
@@ -44,11 +42,16 @@ main {
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
     color: #333;
+    margin-top: 0rem;
 }
 
 .page-header p {
     color: #666;
     margin: 0;
+}
+#current-courses{
+    color: #333;
+    font-size: 1.5rem;
 }
 
 /* Classes Container */
@@ -60,7 +63,7 @@ main {
 }
 
 .class-card {
-    background-color: white;
+    background-color: #9889e123;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     padding: 1.5rem;
