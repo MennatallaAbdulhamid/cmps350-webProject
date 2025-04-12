@@ -160,4 +160,13 @@ function deleteSection(sectionId) {
     } else {
         alert("No section data found in local storage.");
     }
+
+}
+const logoutLink = document.getElementById("logoutLink");
+if (logoutLink) {
+    logoutLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "login.html";
+    });
 }
