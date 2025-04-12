@@ -126,3 +126,14 @@ function deleteSection(sectionId) {
         .catch(err => console.error("Delete failed:", err));
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutLink = document.getElementById("logoutLink");
+
+    if (logoutLink) {
+        logoutLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "login.html";
+        });
+    }
+});
