@@ -1,16 +1,11 @@
-// JSON file path - update this if needed
-const baseJson = "sections.json";
 
-// Select DOM Elements
+const baseJson = "sections.json";
 const adminContainer = document.querySelector("#admin-container");
 
-// Fetch sections when the page loads
 document.addEventListener("DOMContentLoaded", fetchSections);
-
-// Function to fetch sections from JSON
 async function fetchSections() {
     try {
-        // Try loading from localStorage
+       
         const localData = localStorage.getItem("sections");
         if (localData) {
             const parsed = JSON.parse(localData);
@@ -18,14 +13,13 @@ async function fetchSections() {
             return;
         }
 
-        // If not found in localStorage, fetch from JSON file
         const response = await fetch(baseJson);
         if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         const data = await response.json();
         const sections = data.sections || [];
 
-        // Save initial load to localStorage
+      
         localStorage.setItem("sections", JSON.stringify({ sections }));
 
         displaySections(sections);
@@ -40,7 +34,7 @@ async function fetchSections() {
     }
 }
 
-// Function to display sections organized by status
+
 function displaySections(sections) {
     const openSections = sections.filter(sec => sec.status.toLowerCase() === "open");
     const closedSections = sections.filter(sec => sec.status.toLowerCase() === "closed");
@@ -58,7 +52,7 @@ function displaySections(sections) {
 }
 
 
-// Render sections into a card grid
+
 function renderSectionGroup(title, sectionList) {
     if (sectionList.length === 0) {
         return `
@@ -75,7 +69,7 @@ function renderSectionGroup(title, sectionList) {
     `;
 }
 
-// Create section card
+
 function generateSectionCard(section) {
     return `
         <div class="course-card">
@@ -101,9 +95,9 @@ function generateSectionCard(section) {
     `;
 }
 
-// Validate a section by changing its status - now works with localStorage
+
 function validateSection(sectionId) {
-    // Get sections from localStorage
+   
     const localData = localStorage.getItem("sections");
     
     if (localData) {
@@ -117,14 +111,14 @@ function validateSection(sectionId) {
                 return;
             }
 
-            // Update status from "closed" to "open"
+   
             if (sections[sectionIndex].status.toLowerCase() === "closed") {
                 sections[sectionIndex].status = "open";
 
-                // Save updated data back to localStorage
+       
                 localStorage.setItem("sections", JSON.stringify({ sections }));
 
-                // Re-render
+              
                 displaySections(sections);
                 alert(`Section "${sectionId}" status changed to OPEN.`);
             }
@@ -137,11 +131,10 @@ function validateSection(sectionId) {
     }
 }
 
-// Edit a section by changing status from "open" to "closed"
 function editSection(sectionId) {
     if (!confirm(`Are you sure you want to change status of section "${sectionId}" to EDIT?`)) return;
 
-    // Get sections from localStorage
+   
     const localData = localStorage.getItem("sections");
     
     if (localData) {
@@ -155,11 +148,10 @@ function editSection(sectionId) {
                 return;
             }
 
-            // Update status from "open" to "closed"
+           
             if (sections[sectionIndex].status.toLowerCase() === "open") {
                 sections[sectionIndex].status = "closed";
 
-                // Save updated data back to localStorage
                 localStorage.setItem("sections", JSON.stringify({ sections }));
 
                 displaySections(sections);
@@ -174,11 +166,11 @@ function editSection(sectionId) {
     }
 }
 
-// Delete a section by ID - works with localStorage
+
 function deleteSection(sectionId) {
     if (!confirm(`Are you sure you want to permanently delete section "${sectionId}"?`)) return;
 
-    // Get sections from localStorage
+
     const localData = localStorage.getItem("sections");
     
     if (localData) {
@@ -187,10 +179,10 @@ function deleteSection(sectionId) {
             let sections = data.sections || [];
             sections = sections.filter(sec => sec.id !== sectionId);
 
-            // Save updated data back to localStorage
+           
             localStorage.setItem("sections", JSON.stringify({ sections }));
 
-            // Re-render
+      
             displaySections(sections);
             alert(`Section "${sectionId}" has been permanently deleted.`);
         } catch (error) {

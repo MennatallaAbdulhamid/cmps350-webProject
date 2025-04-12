@@ -52,13 +52,12 @@ function addClassField() {
     classCount++;
 }
 
-// Function to remove a class field
+
 function removeClass(button) {
     const classEntry = button.parentElement;
     classEntry.remove();
 }
 
-// Function to save a new course
 async function saveNewCourse(event) {
     event.preventDefault();
     
