@@ -198,27 +198,8 @@ async function saveNewCourse(event) {
         // Save updated sections to localStorage
         localStorage.setItem("sections", JSON.stringify(sectionsObject));
         
-        // Prepare confirmation message with course details
-        let confirmMessage = `Course saved successfully!\n\n`;
-        confirmMessage += `Course Code: ${code}\n`;
-        confirmMessage += `Course Name: ${name}\n`;
-        confirmMessage += `Category: ${category}\n`;
-        confirmMessage += `Credits: ${credits}\n`;
-        confirmMessage += `Description: ${description}\n`;
-        confirmMessage += `Prerequisites: ${prerequisites.length > 0 ? prerequisites.join(", ") : "None"}\n`;
-        confirmMessage += `Semesters Offered: ${semestersOffered.join(", ")}\n`;
-        confirmMessage += `Status: ${status}\n\n`;
-        confirmMessage += `Classes: ${classes.length}\n`;
-        
-        classes.forEach((cls, index) => {
-            confirmMessage += `\nClass ${index + 1}:\n`;
-            confirmMessage += `- ID: ${cls.class_id}\n`;
-            confirmMessage += `- Instructor: ${cls.instructor}\n`;
-            confirmMessage += `- Schedule: ${cls.schedule}\n`;
-        });
-        
-        // Show confirmation dialog
-        if (confirm(confirmMessage)) {
+        // Simple confirmation message
+        if (confirm("Confirm the information")) {
             // Redirect to admin dashboard after user clicks OK
             window.location.href = "adminDashboard.html";
         }
@@ -249,5 +230,6 @@ function addNewSection(newSection) {
     // Save it back
     localStorage.setItem("sections", JSON.stringify({ sections }));
 
-    window.location.href = "adminDashboard.html";
+    // Optionally redirect to dashboard
+    window.location.href = "adminDashboard.html"; // Or whatever your dashboard file is
 }

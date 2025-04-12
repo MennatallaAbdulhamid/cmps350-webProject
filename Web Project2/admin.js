@@ -139,7 +139,7 @@ function validateSection(sectionId) {
 
 // Edit a section by changing status from "open" to "closed"
 function editSection(sectionId) {
-    if (!confirm(`Are you sure you want to change status of section "${sectionId}" to CLOSED?`)) return;
+    if (!confirm(`Are you sure you want to change status of section "${sectionId}" to EDIT?`)) return;
 
     // Get sections from localStorage
     const localData = localStorage.getItem("sections");
@@ -162,9 +162,8 @@ function editSection(sectionId) {
                 // Save updated data back to localStorage
                 localStorage.setItem("sections", JSON.stringify({ sections }));
 
-                // Re-render
                 displaySections(sections);
-                alert(`Section "${sectionId}" status changed to CLOSED.`);
+                alert(`Section "${sectionId}" changed to EDIT.`);
             }
         } catch (error) {
             console.error("Error editing section:", error);
