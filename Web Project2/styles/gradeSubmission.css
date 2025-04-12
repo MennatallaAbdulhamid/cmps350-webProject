@@ -1,5 +1,4 @@
 :root {
-    /* color palette using custom properties (cascading variables) */
     --scarlet-400: #E8E8E8;
     --color-primary: #634AFF; 
     --color-background: #FDFFFC; 
@@ -58,7 +57,7 @@ body {
     color: #333;
 }
 
-/* Main Content */
+
 main {
     padding: 2rem;
     max-width: 1280px;
@@ -80,7 +79,7 @@ main {
     margin: 0;
 }
 
-/* Grade Entry Card */
+
 .grade-entry-card {
     background-color: white;
     border-radius: 12px;
@@ -157,7 +156,7 @@ main {
     border-color: #6246ea;
 }
 
-/* Students Grades Section */
+
 .students-grades-section {
     margin-bottom: 2rem;
 }
@@ -203,7 +202,6 @@ main {
     background-color: #f9f9f9;
 }
 
-/* Table Columns */
 .student-avatar {
     width: 50px;
 }
@@ -236,7 +234,7 @@ main {
     text-align: center;
 }
 
-/* Grade Input */
+
 .grade-input {
     width: 100%;
     padding: 0.6rem;
@@ -256,7 +254,7 @@ main {
     background-color: #fff8f8;
 }
 
-/* Edit Button */
+
 .edit-btn {
     background-color: transparent;
     border: none;
@@ -270,7 +268,7 @@ main {
     color: #5039d1;
 }
 
-/* Bottom Actions */
+
 .bottom-actions {
     display: flex;
     gap: 1rem;
@@ -326,7 +324,7 @@ main {
     color: #333;
 }
 
-/* Guidelines Section */
+
 .guidelines-section {
     margin-top: 3rem;
 }
@@ -368,7 +366,6 @@ main {
     font-size: 0.95rem;
 }
 
-/* Footer */
 footer {
     background-color: white;
     padding: 1.5rem 2rem;

@@ -4,7 +4,6 @@ let countCourses = 0;
 const showeCourses = 6;
 let studentId = null;
 
-// Validate login and find studentId
 async function initializeStudent() {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     let studentsData = JSON.parse(localStorage.getItem("studentsData"));

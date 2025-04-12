@@ -1,4 +1,4 @@
-/* card styles */
+
 
 .card-container {
     display: flex;
@@ -8,7 +8,7 @@
 }
 
 .course-card {
-    background-color: #9889e123; /* light grey background */
+    background-color: #9889e123; 
     border-radius: 20px;
     padding: 20px;
     width: 300px;
@@ -63,7 +63,7 @@
     background-color: var(--color-secondary);
 }
 
-/* */
+
 .create-course-btn {
     background-color: var(--color-primary);
     color: white;

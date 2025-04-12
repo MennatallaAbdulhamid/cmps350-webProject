@@ -1,5 +1,4 @@
 :root {
-    /* color palette using custom properties (cascading variables) */
     --scarlet-400: #E8E8E8;
     --color-primary: #634AFF; 
     --color-background: #FDFFFC; 
@@ -41,7 +40,7 @@ body {
 
 
 
-/* Main Content */
+
 main {
     padding: 2rem;
     max-width: 1280px;
@@ -68,7 +67,7 @@ main {
     font-size: 1.5rem;
 }
 
-/* Classes Container */
+
 .classes-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -135,7 +134,6 @@ main {
     background-color: #5039d1;
 }
 
-/* Actions Bar */
 .actions-bar {
     display: flex;
     gap: 1rem;
@@ -158,7 +156,6 @@ main {
     background-color: #5039d1;
 }
 
-/* Footer */
 footer {
     background-color: white;
     padding: 1.5rem 2rem;
