@@ -90,10 +90,12 @@ function generateSectionCard(section) {
             <div class="card-actions">
                 ${
                     section.status.toLowerCase() === "closed"
-                        ? `<button onclick="validateSection('${section.id}')">Validate</button>`
-                        : ""
+                        ? `
+                            <button onclick="validateSection('${section.id}')">Validate</button>
+                            <button class="btn-cancel" onclick="deleteSection('${section.id}')">Delete</button>
+                          `
+                        : `<button class="btn-cancel" onclick="editSection('${section.id}')">Edit</button>`
                 }
-                <button class="btn-cancel" onclick="deleteSection('${section.id}')">Delete</button>
             </div>
         </div>
     `;
@@ -135,9 +137,47 @@ function validateSection(sectionId) {
     }
 }
 
-// Delete a section by ID - now works with localStorage
+// Edit a section by changing status from "open" to "closed"
+function editSection(sectionId) {
+    if (!confirm(`Are you sure you want to change status of section "${sectionId}" to CLOSED?`)) return;
+
+    // Get sections from localStorage
+    const localData = localStorage.getItem("sections");
+    
+    if (localData) {
+        try {
+            const data = JSON.parse(localData);
+            const sections = data.sections || [];
+            const sectionIndex = sections.findIndex(sec => sec.id === sectionId);
+
+            if (sectionIndex === -1) {
+                console.error("Section not found:", sectionId);
+                return;
+            }
+
+            // Update status from "open" to "closed"
+            if (sections[sectionIndex].status.toLowerCase() === "open") {
+                sections[sectionIndex].status = "closed";
+
+                // Save updated data back to localStorage
+                localStorage.setItem("sections", JSON.stringify({ sections }));
+
+                // Re-render
+                displaySections(sections);
+                alert(`Section "${sectionId}" status changed to CLOSED.`);
+            }
+        } catch (error) {
+            console.error("Error editing section:", error);
+            alert("Failed to edit section. See console for details.");
+        }
+    } else {
+        alert("No section data found in local storage.");
+    }
+}
+
+// Delete a section by ID - works with localStorage
 function deleteSection(sectionId) {
-    if (!confirm(`Are you sure you want to delete section "${sectionId}"?`)) return;
+    if (!confirm(`Are you sure you want to permanently delete section "${sectionId}"?`)) return;
 
     // Get sections from localStorage
     const localData = localStorage.getItem("sections");
@@ -153,6 +193,7 @@ function deleteSection(sectionId) {
 
             // Re-render
             displaySections(sections);
+            alert(`Section "${sectionId}" has been permanently deleted.`);
         } catch (error) {
             console.error("Error deleting section:", error);
             alert("Failed to delete section. See console for details.");
@@ -161,18 +202,3 @@ function deleteSection(sectionId) {
         alert("No section data found in local storage.");
     }
 }
-<<<<<<< HEAD
-=======
-
-document.addEventListener("DOMContentLoaded", function () {
-    const logoutLink = document.getElementById("logoutLink");
-
-    if (logoutLink) {
-        logoutLink.addEventListener("click", function (e) {
-            e.preventDefault();
-            localStorage.removeItem("loggedInUser");
-            window.location.href = "login.html";
-        });
-    }
-});
->>>>>>> d86e5d055b55c3bb3a87c0bb69a824dc3411cab4

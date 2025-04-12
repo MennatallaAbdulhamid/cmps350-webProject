@@ -249,6 +249,5 @@ function addNewSection(newSection) {
     // Save it back
     localStorage.setItem("sections", JSON.stringify({ sections }));
 
-    // Optionally redirect to dashboard
-    window.location.href = "adminDashboard.html"; // Or whatever your dashboard file is
+    window.location.href = "adminDashboard.html";
 }
