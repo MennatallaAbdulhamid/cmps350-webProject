@@ -1,23 +1,23 @@
-// JSON file path - keep consistent with admin.js
+
 const baseJson = "courses.json";
 
-// Track number of classes
+
 let classCount = 1;
 
-// Select DOM Elements
+
 document.addEventListener("DOMContentLoaded", function() {
-    // Set up event listeners
+
     document.getElementById("add-class-btn").addEventListener("click", addClassField);
     document.getElementById("course-form").addEventListener("submit", saveNewCourse);
     
 });
 
-// Function to add another class field to the form
+
 function addClassField() {
     const classesContainer = document.getElementById("classes-container");
     const newIndex = classCount;
     
-    // Create a new class entry div
+
     const classEntry = document.createElement("div");
     classEntry.className = "class-entry";
     classEntry.innerHTML = `
