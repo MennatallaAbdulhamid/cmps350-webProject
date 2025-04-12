@@ -1,0 +1,351 @@
+/* Grade Submission Styles */
+
+/* Main Layout */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
+    color: #333;
+}
+
+.main-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+    padding: 0.8rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.university-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Main Content */
+main {
+    padding: 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.page-header p {
+    color: #666;
+    margin: 0;
+}
+
+/* Grade Entry Card */
+.grade-entry-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 1.5rem;
+    background-color: #f0ebff;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.card-header i {
+    color: #6246ea;
+    font-size: 1.2rem;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-content p {
+    margin: 0;
+    flex: 1;
+    color: #666;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+/* Grading Period Section */
+.grading-section {
+    margin-bottom: 2rem;
+}
+
+.grading-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.grading-period-selector {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.grading-period-selector select {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.grading-period-selector select:focus {
+    border-color: #6246ea;
+}
+
+/* Students Grades Section */
+.students-grades-section {
+    margin-bottom: 2rem;
+}
+
+.students-grades-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.students-table-container {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.students-grades-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.students-grades-table th,
+.students-grades-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.students-grades-table thead th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.students-grades-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.students-grades-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Table Columns */
+.student-avatar {
+    width: 50px;
+}
+
+.student-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.student-id-col {
+    width: 15%;
+}
+
+.student-name-col {
+    width: 25%;
+}
+
+.current-grade-col {
+    width: 15%;
+}
+
+.new-grade-col {
+    width: 25%;
+}
+
+.actions-col {
+    width: 10%;
+    text-align: center;
+}
+
+/* Grade Input */
+.grade-input {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.grade-input:focus {
+    border-color: #6246ea;
+}
+
+.grade-input.error {
+    border-color: #e74c3c;
+    background-color: #fff8f8;
+}
+
+/* Edit Button */
+.edit-btn {
+    background-color: transparent;
+    border: none;
+    color: #6246ea;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.edit-btn:hover {
+    color: #5039d1;
+}
+
+/* Bottom Actions */
+.bottom-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.primary-btn {
+    background-color: #6246ea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+    background-color: #5039d1;
+}
+
+.secondary-btn {
+    background-color: #e9e3ff;
+    color: #6246ea;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.secondary-btn:hover {
+    background-color: #dfd8ff;
+}
+
+.tertiary-btn {
+    background-color: transparent;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tertiary-btn:hover {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Guidelines Section */
+.guidelines-section {
+    margin-top: 3rem;
+}
+
+.guidelines-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.guideline-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.guideline-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: #f0ebff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6246ea;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.guideline-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.guideline-content p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Footer */
+footer {
+    background-color: white;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    border-top: 1px solid #eaeaea;
+    margin-top: 2rem;
+}

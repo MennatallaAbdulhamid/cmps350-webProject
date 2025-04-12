@@ -3,11 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Instructor Dashboard | Qatar University</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/instructorDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <h1>Welcome to Instuctor Dashboard</h1>
-    <p>You are successfully logged in!</p>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="logo-container">
+            <div class="university-name">Qatar University</div>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <h1>Current Classes</h1>
+        </div>
+
+        <div class="classes-container" id="current-classes-container">
+        </div>
+
+        <div class="actions-bar">
+            <button class="primary-btn" id="submit-all-grades">Submit All Grades</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 QU CSE Department | Contact: support@qu.edu.qa</p>
+    </footer>
+
     <script src="instructor.js"></script>
 </body>
 </html>
