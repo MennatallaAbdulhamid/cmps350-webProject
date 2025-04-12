@@ -327,3 +327,21 @@ footer {
 .card-actions .btn-cancel:hover {
     background-color: #c0392b;
 }
+
+/* */
+.create-course-btn {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 30px;
+}
+
+.create-course-btn:hover {
+    background-color: #4a44d4;
+}
+

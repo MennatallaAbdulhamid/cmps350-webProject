@@ -20,6 +20,7 @@
 
     <!-- Main Content -->
     <main>
+        
         <div id="create-course-container">
             <form id="course-form">
                 <div class="form-group">
@@ -48,9 +49,33 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="course-credits">Credits:</label>
+                    <input type="number" id="course-credits" name="credits" min="1" max="6" value="3" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="course-description">Description:</label>
+                    <textarea id="course-description" name="description" rows="3" placeholder="Course description..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="course-prerequisites">Prerequisites (comma separated):</label>
+                    <input type="text" id="course-prerequisites" name="prerequisites" placeholder="e.g., CSE100, MATH101">
+                </div>
+
+                <div class="form-group">
+                    <label>Semesters Offered:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="semester-fall" name="semesters" value="Fall" checked> Fall</label>
+                        <label><input type="checkbox" id="semester-spring" name="semesters" value="Spring"> Spring</label>
+                        <label><input type="checkbox" id="semester-summer" name="semesters" value="Summer"> Summer</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <label for="course-status">Status:</label>
                     <select id="course-status" name="status" required>
-                        <option value="Pending">Pending</option>
+                        <option value="Closed">Pending (closed)</option>
                         <option value="Open">Open</option>
                     </select>
                 </div>

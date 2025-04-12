@@ -10,13 +10,23 @@ document.addEventListener("DOMContentLoaded", fetchSections);
 // Function to fetch sections from JSON
 async function fetchSections() {
     try {
-        const response = await fetch(baseJson);
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+        // Try loading from localStorage
+        const localData = localStorage.getItem("sections");
+        if (localData) {
+            const parsed = JSON.parse(localData);
+            displaySections(parsed.sections || []);
+            return;
         }
+
+        // If not found in localStorage, fetch from JSON file
+        const response = await fetch(baseJson);
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         const data = await response.json();
         const sections = data.sections || [];
+
+        // Save initial load to localStorage
+        localStorage.setItem("sections", JSON.stringify({ sections }));
 
         displaySections(sections);
     } catch (error) {
@@ -33,7 +43,6 @@ async function fetchSections() {
 // Function to display sections organized by status
 function displaySections(sections) {
     const openSections = sections.filter(sec => sec.status.toLowerCase() === "open");
-    const waitlistSections = sections.filter(sec => sec.status.toLowerCase() === "waitlist");
     const closedSections = sections.filter(sec => sec.status.toLowerCase() === "closed");
 
     adminContainer.innerHTML = `
@@ -44,10 +53,10 @@ function displaySections(sections) {
         </section>
 
         ${renderSectionGroup("Open for Registration", openSections)}
-        ${renderSectionGroup("Waitlisted Sections", waitlistSections)}
         ${renderSectionGroup("Closed Sections", closedSections)}
     `;
 }
+
 
 // Render sections into a card grid
 function renderSectionGroup(title, sectionList) {
@@ -78,53 +87,82 @@ function generateSectionCard(section) {
             <p><strong>Deadline:</strong> ${section.deadline}</p>
             <p><strong>Status:</strong> ${section.status}</p>
 
-            <div class="action-buttons">
-                <button onclick="validateSection('${section.id}')">✔️ Validate</button>
-                <button onclick="deleteSection('${section.id}')">🗑️ Delete</button>
+            <div class="card-actions">
+                ${
+                    section.status.toLowerCase() === "closed"
+                        ? `<button onclick="validateSection('${section.id}')">Validate</button>`
+                        : ""
+                }
+                <button class="btn-cancel" onclick="deleteSection('${section.id}')">Delete</button>
             </div>
         </div>
     `;
 }
 
-// Validate a section by changing its status
+// Validate a section by changing its status - now works with localStorage
 function validateSection(sectionId) {
-    fetch(baseJson)
-        .then(res => res.json())
-        .then(data => {
+    // Get sections from localStorage
+    const localData = localStorage.getItem("sections");
+    
+    if (localData) {
+        try {
+            const data = JSON.parse(localData);
             const sections = data.sections || [];
+            const sectionIndex = sections.findIndex(sec => sec.id === sectionId);
 
-            const updatedSections = sections.map(section => {
-                if (section.id === sectionId) {
-                    return { ...section, status: "closed" }; // Or next status
-                }
-                return section;
-            });
+            if (sectionIndex === -1) {
+                console.error("Section not found:", sectionId);
+                return;
+            }
 
-            // Save updated data in localStorage (or send to server in real app)
-            localStorage.setItem("sections", JSON.stringify({ sections: updatedSections }));
-            displaySections(updatedSections);
-            alert(`Section "${sectionId}" has been validated (status set to 'closed').`);
-        })
-        .catch(err => console.error("Validation failed:", err));
+            // Update status from "closed" to "open"
+            if (sections[sectionIndex].status.toLowerCase() === "closed") {
+                sections[sectionIndex].status = "open";
+
+                // Save updated data back to localStorage
+                localStorage.setItem("sections", JSON.stringify({ sections }));
+
+                // Re-render
+                displaySections(sections);
+                alert(`Section "${sectionId}" status changed to OPEN.`);
+            }
+        } catch (error) {
+            console.error("Error validating section:", error);
+            alert("Failed to validate section. See console for details.");
+        }
+    } else {
+        alert("No section data found in local storage.");
+    }
 }
 
-// Delete a section by ID
+// Delete a section by ID - now works with localStorage
 function deleteSection(sectionId) {
     if (!confirm(`Are you sure you want to delete section "${sectionId}"?`)) return;
 
-    fetch(baseJson)
-        .then(res => res.json())
-        .then(data => {
-            const sections = data.sections || [];
+    // Get sections from localStorage
+    const localData = localStorage.getItem("sections");
+    
+    if (localData) {
+        try {
+            const data = JSON.parse(localData);
+            let sections = data.sections || [];
+            sections = sections.filter(sec => sec.id !== sectionId);
 
-            const updatedSections = sections.filter(section => section.id !== sectionId);
+            // Save updated data back to localStorage
+            localStorage.setItem("sections", JSON.stringify({ sections }));
 
-            localStorage.setItem("sections", JSON.stringify({ sections: updatedSections }));
-            displaySections(updatedSections);
-            alert(`Section "${sectionId}" has been deleted.`);
-        })
-        .catch(err => console.error("Delete failed:", err));
+            // Re-render
+            displaySections(sections);
+        } catch (error) {
+            console.error("Error deleting section:", error);
+            alert("Failed to delete section. See console for details.");
+        }
+    } else {
+        alert("No section data found in local storage.");
+    }
 }
+<<<<<<< HEAD
+=======
 
 document.addEventListener("DOMContentLoaded", function () {
     const logoutLink = document.getElementById("logoutLink");
@@ -137,3 +175,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+>>>>>>> d86e5d055b55c3bb3a87c0bb69a824dc3411cab4
