@@ -154,3 +154,9 @@ table.course-table {
 .bottom-area h3 {
     color: var(--color-secondary);
 }
+footer {
+    padding: 40px;
+    text-align: center;
+    margin-top: 50px;
+    opacity: 70%;
+}
