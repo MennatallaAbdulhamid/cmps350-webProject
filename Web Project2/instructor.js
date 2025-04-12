@@ -90,3 +90,14 @@ function submitGrades(courseCode, courseName) {
     // Navigate to the grade submission page
     window.location.href = `gradeSubmission.html?course=${courseCode}`;
 }
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutLink = document.getElementById("logoutLink");
+
+    if (logoutLink) {
+        logoutLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "login.html";
+        });
+    }
+});
