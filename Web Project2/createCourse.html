@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Course</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="/Images/My-removebg-preview.png" alt="Logo" class="logo">
+        <h1>Create New Course</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div id="create-course-container">
+            <form id="course-form">
+                <div class="form-group">
+                    <label for="course-code">Course Code:</label>
+                    <input type="text" id="course-code" name="code" required placeholder="e.g., CSE101">
+                </div>
+
+                <div class="form-group">
+                    <label for="course-name">Course Name:</label>
+                    <input type="text" id="course-name" name="name" required placeholder="e.g., Introduction to Computer Science">
+                </div>
+
+                <div class="form-group">
+                    <label for="course-category">Category:</label>
+                    <select id="course-category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Programming">Programming</option>
+                        <option value="Database">Database</option>
+                        <option value="Networks">Networks</option>
+                        <option value="Artificial Intelligence">Artificial Intelligence</option>
+                        <option value="Systems">Systems</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="course-status">Status:</label>
+                    <select id="course-status" name="status" required>
+                        <option value="Pending">Pending</option>
+                        <option value="Open">Open</option>
+                    </select>
+                </div>
+
+                <h3>Classes</h3>
+                <div id="classes-container">
+                    <div class="class-entry">
+                        <div class="form-group">
+                            <label for="class-id-0">Class ID:</label>
+                            <input type="text" id="class-id-0" name="class_id_0" required placeholder="e.g., SEC01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instructor-0">Instructor:</label>
+                            <input type="text" id="instructor-0" name="instructor_0" required placeholder="Instructor name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="schedule-0">Schedule:</label>
+                            <input type="text" id="schedule-0" name="schedule_0" required placeholder="e.g., Mon/Wed 10:00-11:15">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Students (Empty for new class):</label>
+                            <div class="student-list" id="students-0">
+                                <!-- Empty by default -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="add-class-btn" class="secondary-btn">
+                    <i class="fa-solid fa-plus"></i> Add Another Class
+                </button>
+
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Save Course</button>
+                    <button type="button" class="secondary-btn" onclick="location.href='index.html'">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 QU CSE Department | Contact: support@qu.edu.qa</p>
+    </footer>
+
+    <script src="createCourse.js"></script>
+</body>
+</html>
