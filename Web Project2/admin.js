@@ -161,3 +161,18 @@ function deleteSection(sectionId) {
         alert("No section data found in local storage.");
     }
 }
+<<<<<<< HEAD
+=======
+
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutLink = document.getElementById("logoutLink");
+
+    if (logoutLink) {
+        logoutLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "login.html";
+        });
+    }
+});
+>>>>>>> d86e5d055b55c3bb3a87c0bb69a824dc3411cab4
