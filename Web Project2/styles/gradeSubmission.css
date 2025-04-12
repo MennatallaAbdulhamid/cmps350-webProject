@@ -49,7 +49,7 @@ body {
 
 .logo-container {
     display: flex;
-    align-items: center;
+    align-items: center; 
 }
 
 .university-name {
