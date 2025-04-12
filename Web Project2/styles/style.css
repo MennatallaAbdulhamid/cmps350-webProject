@@ -273,11 +273,11 @@ footer {
 }
 
 .course-card {
-    background-color: var(--scarlet-400); /* light grey background */
+    background-color: var(--color-background); /* light grey background */
     border-radius: 20px;
     padding: 20px;
     width: 300px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     transition: transform 0.2s ease;
 }
 
@@ -321,11 +321,11 @@ footer {
 }
 
 .card-actions .btn-cancel {
-    background-color: #d63031;
+    background-color:var(--color-primary);
 }
 
 .card-actions .btn-cancel:hover {
-    background-color: #c0392b;
+    background-color: var(--color-secondary);
 }
 
 /* */

@@ -23,14 +23,14 @@ padding: 5px;
 font-size: 16px;
 margin: 0 10px;
 border-radius: 30px;
-color : #2E266D;
+color : var(--color-secondary);
 }
 header nav a i {
   margin-right: 8px; 
   font-size: 18px; 
 }
 header nav a:hover {
-  color: #634AFF;
+  color: var(--color-primary);
 }
 
 body {
@@ -78,7 +78,7 @@ body {
   input[type="text"]:focus,
   select:focus,
   textarea:focus {
-    border-color: #3498db;
+    border-color: var(--color-secondary);
     outline: none;
   }
   
