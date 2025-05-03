@@ -1,0 +1,26 @@
+[
+  {
+    "studentId": "202104978",
+    "name":      "Ahmed Mohamed",
+    "email":     "am2104978@qu.edu.qa",
+    "password":  "qu2104978"
+  },
+  {
+    "studentId": "202104979",
+    "name":      "Sara Ali",
+    "email":     "sa2104979@qu.edu.qa",
+    "password":  "qu2104979"
+  },
+  {
+    "studentId": "202104980",
+    "name":      "Omar Hassan",
+    "email":     "oh2104980@qu.edu.qa",
+    "password":  "qu2104980"
+  },
+  {
+    "studentId": "202104981",
+    "name":      "Layla Hussein",
+    "email":     "lh2104981@qu.edu.qa",
+    "password":  "qu2104981"
+  }
+]

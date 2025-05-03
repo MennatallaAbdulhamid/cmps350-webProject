@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  email    String @id @unique
+  password String
+  role     String
+}
+
+model Student {
+  studentId     String         @id @unique
+  name          String
+  email         String         @unique
+  password      String
+  registrations Registration[]
+}
+
+model Course {
+  code          String               @id @unique
+  name          String               @unique
+  category      String
+  credits       Int
+  description   String
+  prerequisites CoursePrerequisite[]
+  offerings     SemesterOffering[]
+  sections      Section[]
+}
+
+model Section {
+  id             String @id
+  course         Course @relation(fields: [courseCode], references: [code])
+  courseCode     String
+  schedule       String
+  instructor     String
+  seats          Int
+  availableSeats Int
+  deadline       String
+  location       String
+  status         String
+}
+
+model Registration {
+  id                 Int          @id @default(autoincrement())
+  student            Student      @relation(fields: [studentId], references: [studentId])
+  studentId          String
+  semester           String
+  courseCode         String
+  sectionId          String
+  status             String
+  grade              String?
+  creditsEarned      Int?
+  registrationStatus String?
+  preferences        Preference[] // 1-to-many
+}
+
+model Preference {
+  id             Int          @id @default(autoincrement())
+  registration   Registration @relation(fields: [registrationId], references: [id])
+  registrationId Int
+  sectionId      String
+}
+
+enum Semester {
+  Fall
+  Spring
+  Summer
+}
+
+model CoursePrerequisite {
+  id               Int    @id @default(autoincrement())
+  course           Course @relation(fields: [courseCode], references: [code])
+  courseCode       String
+  prerequisiteCode String
+}
+
+model SemesterOffering {
+  id         Int      @id @default(autoincrement())
+  course     Course   @relation(fields: [courseCode], references: [code])
+  courseCode String
+  semester   Semester
+}

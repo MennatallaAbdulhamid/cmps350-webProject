@@ -1,0 +1,16 @@
+[
+  { "id": "Q1", "courseCode": "COMP 101", "instructor": "Dr. John Smith",   "capacity": 30 },
+  { "id": "Q2", "courseCode": "COMP 101", "instructor": "Dr. Jane Doe",     "capacity": 25 },
+  { "id": "Q3", "courseCode": "COMP 101", "instructor": "Dr. Emily Khan",   "capacity": 20 },
+
+  { "id": "M1", "courseCode": "MATH 101", "instructor": "Dr. Ali Ahmed",    "capacity": 40 },
+  { "id": "M2", "courseCode": "MATH 101", "instructor": "Dr. Omar Saleh",   "capacity": 35 },
+
+  { "id": "C2", "courseCode": "COMP 202", "instructor": "Dr. Lina Farah",    "capacity": 30 },
+  { "id": "D2", "courseCode": "COMP 201", "instructor": "Dr. Samir Aziz",   "capacity": 30 },
+  { "id": "I1", "courseCode": "ISLM 101", "instructor": "Dr. Ahmed Saeed",  "capacity": 50 },
+  { "id": "C1", "courseCode": "COMP 301", "instructor": "Dr. Fatima Yusuf", "capacity": 25 },
+  { "id": "C3", "courseCode": "COMP 401", "instructor": "Dr. Khalid Saleh", "capacity": 20 },
+
+  { "id": "P1", "courseCode": "PHYS 101", "instructor": "Dr. Noura Ali",     "capacity": 40 }
+]

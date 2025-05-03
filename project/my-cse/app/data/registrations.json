@@ -1,0 +1,155 @@
+[
+    {
+      "studentId":          "202104978",
+      "courseCode":         "COMP 101",
+      "semester":           "Fall 2021",
+      "sectionId":          "Q1",
+      "status":             "completed",
+      "grade":              "B+",
+      "creditsEarned":      3,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104978",
+      "courseCode":         "MATH 101",
+      "semester":           "Spring 2022",
+      "sectionId":          "M2",
+      "status":             "completed",
+      "grade":              "A-",
+      "creditsEarned":      4,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104978",
+      "courseCode":         "COMP 202",
+      "semester":           "Fall 2022",
+      "sectionId":          "C2",
+      "status":             "completed",
+      "grade":              "A",
+      "creditsEarned":      3,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104978",
+      "courseCode":         "COMP 201",
+      "semester":           "Spring 2023",
+      "sectionId":          "D2",
+      "status":             "enrolled",
+      "grade":              null,
+      "creditsEarned":      null,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104978",
+      "courseCode":         "ISLM 101",
+      "semester":           "Spring 2023",
+      "sectionId":          "I1",
+      "status":             "enrolled",
+      "grade":              null,
+      "creditsEarned":      null,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104978",
+      "courseCode":         "COMP 301",
+      "semester":           "Fall 2023",
+      "sectionId":          "C1",
+      "status":             "pending",
+      "grade":              null,
+      "creditsEarned":      null,
+      "registrationStatus": "ready_for_registration"
+    },
+    {
+      "studentId":          "202104978",
+      "courseCode":         "COMP 401",
+      "semester":           "Fall 2023",
+      "sectionId":          "C3",
+      "status":             "pending",
+      "grade":              null,
+      "creditsEarned":      null,
+      "registrationStatus": "waitlisted"
+    },
+  
+    {
+      "studentId":          "202104979",
+      "courseCode":         "COMP 101",
+      "semester":           "Fall 2021",
+      "sectionId":          "Q2",
+      "status":             "completed",
+      "grade":              "B",
+      "creditsEarned":      3,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104979",
+      "courseCode":         "MATH 101",
+      "semester":           "Spring 2022",
+      "sectionId":          "M1",
+      "status":             "completed",
+      "grade":              "A",
+      "creditsEarned":      4,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104979",
+      "courseCode":         "COMP 202",
+      "semester":           "Fall 2022",
+      "sectionId":          "C2",
+      "status":             "completed",
+      "grade":              "B+",
+      "creditsEarned":      3,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104979",
+      "courseCode":         "COMP 301",
+      "semester":           "Fall 2023",
+      "sectionId":          "C1",
+      "status":             "pending",
+      "grade":              null,
+      "creditsEarned":      null,
+      "registrationStatus": "ready_for_registration"
+    },
+  
+    {
+      "studentId":          "202104980",
+      "courseCode":         "MATH 101",
+      "semester":           "Spring 2022",
+      "sectionId":          "M2",
+      "status":             "completed",
+      "grade":              "A-",
+      "creditsEarned":      4,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104980",
+      "courseCode":         "COMP 202",
+      "semester":           "Fall 2022",
+      "sectionId":          "C2",
+      "status":             "completed",
+      "grade":              "A",
+      "creditsEarned":      3,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104980",
+      "courseCode":         "PHYS 101",
+      "semester":           "Spring 2023",
+      "sectionId":          "P1",
+      "status":             "enrolled",
+      "grade":              null,
+      "creditsEarned":      null,
+      "registrationStatus": null
+    },
+    {
+      "studentId":          "202104980",
+      "courseCode":         "COMP 401",
+      "semester":           "Fall 2023",
+      "sectionId":          "C3",
+      "status":             "pending",
+      "grade":              null,
+      "creditsEarned":      null,
+      "registrationStatus": "waitlisted"
+    }
+  ]
+  

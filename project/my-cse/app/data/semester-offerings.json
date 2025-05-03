@@ -1,0 +1,25 @@
+[
+    { "courseCode": "COMP 101", "semester": "Fall 2021" },
+    { "courseCode": "COMP 101", "semester": "Spring 2022" },
+    { "courseCode": "COMP 101", "semester": "Fall 2022" },
+    { "courseCode": "COMP 101", "semester": "Spring 2023" },
+  
+    { "courseCode": "MATH 101", "semester": "Fall 2021" },
+    { "courseCode": "MATH 101", "semester": "Spring 2022" },
+    { "courseCode": "MATH 101", "semester": "Fall 2022" },
+  
+    { "courseCode": "COMP 202", "semester": "Fall 2022" },
+    { "courseCode": "COMP 202", "semester": "Spring 2023" },
+  
+    { "courseCode": "COMP 201", "semester": "Spring 2023" },
+    { "courseCode": "COMP 201", "semester": "Fall 2023" },
+  
+    { "courseCode": "ISLM 101", "semester": "Spring 2023" },
+    { "courseCode": "ISLM 101", "semester": "Fall 2023" },
+  
+    { "courseCode": "COMP 301", "semester": "Fall 2023" },
+    { "courseCode": "COMP 401", "semester": "Fall 2023" },
+  
+    { "courseCode": "PHYS 101", "semester": "Spring 2023" }
+  ]
+  
