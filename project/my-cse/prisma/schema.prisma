@@ -21,58 +21,19 @@ model Student {
   name          String
   email         String         @unique
   password      String
-  registrations Registration[]
+  registrations Registration[] // ← back-relation from Registration.student
 }
 
 model Course {
-  code          String               @id @unique
-  name          String               @unique
+  code          String               @id
+  name          String
   category      String
   credits       Int
   description   String
-  prerequisites CoursePrerequisite[]
-  offerings     SemesterOffering[]
-  sections      Section[]
-}
-
-model Section {
-  id             String @id
-  course         Course @relation(fields: [courseCode], references: [code])
-  courseCode     String
-  schedule       String
-  instructor     String
-  seats          Int
-  availableSeats Int
-  deadline       String
-  location       String
-  status         String
-}
-
-model Registration {
-  id                 Int          @id @default(autoincrement())
-  student            Student      @relation(fields: [studentId], references: [studentId])
-  studentId          String
-  semester           String
-  courseCode         String
-  sectionId          String
-  status             String
-  grade              String?
-  creditsEarned      Int?
-  registrationStatus String?
-  preferences        Preference[] // 1-to-many
-}
-
-model Preference {
-  id             Int          @id @default(autoincrement())
-  registration   Registration @relation(fields: [registrationId], references: [id])
-  registrationId Int
-  sectionId      String
-}
-
-enum Semester {
-  Fall
-  Spring
-  Summer
+  prerequisites CoursePrerequisite[] // ← back-relation from CoursePrerequisite.course
+  offerings     SemesterOffering[] // ← back-relation from SemesterOffering.course
+  sections      Section[] // ← your existing back-relation
+  registrations Registration[] // ← NEW: back-relation from Registration.course
 }
 
 model CoursePrerequisite {
@@ -83,8 +44,47 @@ model CoursePrerequisite {
 }
 
 model SemesterOffering {
-  id         Int      @id @default(autoincrement())
-  course     Course   @relation(fields: [courseCode], references: [code])
+  id         Int    @id @default(autoincrement())
+  course     Course @relation(fields: [courseCode], references: [code])
   courseCode String
-  semester   Semester
+  semester   String
+}
+
+model Section {
+  id         String @id
+  course     Course @relation(fields: [courseCode], references: [code])
+  courseCode String
+  instructor String
+  capacity   Int
+  schedule   String @default("")
+  deadline   String @default("")
+  location   String @default("")
+
+  registrations Registration[] // ← NEW: back-relation from Registration.section
+  preferences   Preference[] // ← NEW: back-relation from Preference.section
+}
+
+model Registration {
+  id                 Int     @id @default(autoincrement())
+  student            Student @relation(fields: [studentId], references: [studentId])
+  studentId          String
+  course             Course  @relation(fields: [courseCode], references: [code])
+  courseCode         String
+  semester           String
+  section            Section @relation(fields: [sectionId], references: [id])
+  sectionId          String
+  status             String
+  grade              String? @default("")
+  creditsEarned      Int?    @default(0)
+  registrationStatus String? @default("")
+
+  preferences Preference[] // ← NEW: back-relation from Preference.registration
+}
+
+model Preference {
+  id             Int          @id @default(autoincrement())
+  registration   Registration @relation(fields: [registrationId], references: [id])
+  registrationId Int
+  section        Section      @relation(fields: [sectionId], references: [id])
+  sectionId      String
 }

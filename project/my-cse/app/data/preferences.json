@@ -1,51 +1,8 @@
 [
-    {
-      "registrationComposite": {
-        "studentId":  "202104978",
-        "courseCode": "COMP 301",
-        "semester":   "Fall 2023"
-      },
-      "sectionId": "C1"
-    },
-    {
-      "registrationComposite": {
-        "studentId":  "202104978",
-        "courseCode": "COMP 401",
-        "semester":   "Fall 2023"
-      },
-      "sectionId": "C3"
-    },
-    {
-      "registrationComposite": {
-        "studentId":  "202104979",
-        "courseCode": "COMP 301",
-        "semester":   "Fall 2023"
-      },
-      "sectionId": "C1"
-    },
-    {
-      "registrationComposite": {
-        "studentId":  "202104979",
-        "courseCode": "COMP 301",
-        "semester":   "Fall 2023"
-      },
-      "sectionId": "C2"
-    },
-    {
-      "registrationComposite": {
-        "studentId":  "202104980",
-        "courseCode": "COMP 401",
-        "semester":   "Fall 2023"
-      },
-      "sectionId": "C3"
-    },
-    {
-      "registrationComposite": {
-        "studentId":  "202104980",
-        "courseCode": "COMP 401",
-        "semester":   "Fall 2023"
-      },
-      "sectionId": "C1"
-    }
-  ]
-  
+  { "registrationId": 6,  "sectionId": "C1" },
+  { "registrationId": 7,  "sectionId": "C3" },
+  { "registrationId": 11, "sectionId": "C1" },
+  { "registrationId": 11, "sectionId": "C2" },
+  { "registrationId": 15, "sectionId": "C3" },
+  { "registrationId": 15, "sectionId": "C1" }
+]
