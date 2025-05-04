@@ -38,21 +38,21 @@ model Course {
 
 model CoursePrerequisite {
   id               Int    @id @default(autoincrement())
-  course           Course @relation(fields: [courseCode], references: [code])
+  course           Course @relation(fields: [courseCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
   courseCode       String
   prerequisiteCode String
 }
 
 model SemesterOffering {
   id         Int    @id @default(autoincrement())
-  course     Course @relation(fields: [courseCode], references: [code])
+  course     Course @relation(fields: [courseCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
   courseCode String
   semester   String
 }
 
 model Section {
   id         String @id
-  course     Course @relation(fields: [courseCode], references: [code])
+  course     Course @relation(fields: [courseCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
   courseCode String
   instructor String
   capacity   Int
@@ -66,12 +66,12 @@ model Section {
 
 model Registration {
   id                 Int     @id @default(autoincrement())
-  student            Student @relation(fields: [studentId], references: [studentId])
+  student            Student @relation(fields: [studentId], references: [studentId], onDelete: Cascade, onUpdate: Cascade)
   studentId          String
-  course             Course  @relation(fields: [courseCode], references: [code])
+  course             Course  @relation(fields: [courseCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
   courseCode         String
   semester           String
-  section            Section @relation(fields: [sectionId], references: [id])
+  section            Section @relation(fields: [sectionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   sectionId          String
   status             String
   grade              String? @default("")
@@ -83,8 +83,8 @@ model Registration {
 
 model Preference {
   id             Int          @id @default(autoincrement())
-  registration   Registration @relation(fields: [registrationId], references: [id])
+  registration   Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   registrationId Int
-  section        Section      @relation(fields: [sectionId], references: [id])
+  section        Section      @relation(fields: [sectionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   sectionId      String
 }

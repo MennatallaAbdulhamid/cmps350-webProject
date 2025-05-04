@@ -1,55 +1,55 @@
 [
   {
-    "code":        "COMP 101",
+    "code":        "COMP101",
     "name":        "Introduction to Computer Science",
     "category":    "Computer Science",
     "credits":     3,
     "description": "Fundamental programming concepts using Python."
   },
   {
-    "code":        "MATH 101",
+    "code":        "MATH101",
     "name":        "Calculus I",
     "category":    "Mathematics",
     "credits":     4,
     "description": "Limits, derivatives, and integrals of single-variable functions."
   },
   {
-    "code":        "COMP 202",
+    "code":        "COMP202",
     "name":        "Data Structures",
     "category":    "Computer Science",
     "credits":     3,
     "description": "Arrays, linked lists, stacks, queues, trees and graphs."
   },
   {
-    "code":        "COMP 201",
+    "code":        "COMP201",
     "name":        "Discrete Mathematics",
     "category":    "Computer Science",
     "credits":     3,
     "description": "Logic, sets, relations, functions and combinatorics."
   },
   {
-    "code":        "ISLM 101",
+    "code":        "ISLM101",
     "name":        "Introduction to Islamic Studies",
     "category":    "Humanities",
     "credits":     2,
     "description": "Foundations of Islamic culture, history and beliefs."
   },
   {
-    "code":        "COMP 301",
+    "code":        "COMP301",
     "name":        "Algorithms",
     "category":    "Computer Science",
     "credits":     3,
     "description": "Design and analysis of algorithms."
   },
   {
-    "code":        "COMP 401",
+    "code":        "COMP401",
     "name":        "Operating Systems",
     "category":    "Computer Science",
     "credits":     3,
     "description": "Processes, threads, synchronization and memory management."
   },
   {
-    "code":        "PHYS 101",
+    "code":        "PHYS101",
     "name":        "General Physics",
     "category":    "Physics",
     "credits":     4,
