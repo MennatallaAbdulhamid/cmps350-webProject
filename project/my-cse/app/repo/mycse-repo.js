@@ -22,6 +22,15 @@ class MyCSERepo {
             include: { prerequisites: true }
         })
     }
+
+    //get all courses for a given category
+    async getCoursesByCategory(category) {
+        return await prisma.course.findMany({
+            where: { category: category },
+            include: { prerequisites: true }
+        })
+    }
+
     async createCourse(courseData) {
         return await prisma.course.create({ data: courseData })
     }
@@ -105,7 +114,9 @@ class MyCSERepo {
             include: { prerequisite: true }
         })
     }
+
     
+
 
 
 
