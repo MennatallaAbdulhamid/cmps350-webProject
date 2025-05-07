@@ -51,3 +51,25 @@ export async function getDegreeProgressAction(studentId) {
     const requiredCredits  = 120
     return { completedCredits, requiredCredits }
   }
+
+//getCourseRegistrationData
+export async function getCourseRegistrationData(studentId, courseCode) {
+    const student = await mycseRepo.getStudentById(studentId)
+    const course = await mycseRepo.getCourseById(courseCode)
+    const sections = await mycseRepo.getCourseSections(courseCode)
+    const unmet = await mycseRepo.getCoursePrerequisites(courseCode)
+
+    return { student, course, sections, unmet }
+}
+//getStudentById
+export async function getStudentById(studentId) {
+    return await mycseRepo.getStudentById(studentId)
+}
+//getStudentRegistrations
+export async function getStudentRegistrations(studentId) {
+    return await mycseRepo.getStudentRegistrations(studentId)
+}
+//getStudentPreferences
+export async function getStudentPreferences(studentId) {
+    return await mycseRepo.getStudentPreferences(studentId)
+}
