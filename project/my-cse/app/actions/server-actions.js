@@ -73,3 +73,26 @@ export async function getStudentRegistrations(studentId) {
 export async function getStudentPreferences(studentId) {
     return await mycseRepo.getStudentPreferences(studentId)
 }
+
+export async function registerSection(formData) {
+    const studentId  = parseInt(formData.get('studentId'), 10)
+    const courseCode = parseInt(formData.get('courseCode'), 10)
+    const sectionId  = parseInt(formData.get('sectionId'), 10)
+  
+    // 1) decrement seats
+    const secs   = await repo.getCourseSections(courseCode)
+    const target = secs.find(s => s.id === sectionId)
+    await repo.updateSection(sectionId, {
+      availableSeats: target.availableSeats - 1
+    })
+  
+    // 2) create registration
+    await repo.createRegistration({
+      studentId,
+      sectionId,
+      status: 'enrolled'
+    })
+  
+    // 3) refresh this page’s data
+    revalidatePath(`/course-registration?courseCode=${courseCode}`)
+  }

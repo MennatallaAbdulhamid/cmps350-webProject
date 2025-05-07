@@ -1,8 +1,6 @@
-// components/RegistrationForm.jsx
 'use client'
-
 import { useState } from 'react'
-import { registerSection } from '@/app/course-registration/actions'
+import { registerSection } from '@/app/actions/server-actions'
 
 export default function RegistrationForm({ student, course, sections, unmet }) {
   const [selected, setSelected] = useState()
