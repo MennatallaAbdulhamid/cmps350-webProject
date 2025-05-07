@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Dashboard | Qatar University</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/instructorDashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <img src="Images/My-removebg-preview.png" alt="Logo" class="logo">
+        <nav>
+            <a href="instructorDashboard.html"><i class="fas fa-users"></i>Instructor Dashboard</a>
+            <a href="#" id="logoutLink"><i class="fas fa-door-open"></i>Logout</a>
+        </nav>
+      </header>
+
+    <main>
+        <div class="page-header">
+
+            <h1>Welcome to Mycse Instructor Dashboard</h1>
+            <p id = "current-courses">Current Courses</p>
+        </div>
+
+        <div class="classes-container" id="current-classes-container">
+        </div>
+
+        <div class="actions-bar">
+            <button class="primary-btn" id="submit-all-grades">Submit All Grades</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 QU CSE Department | Contact: support@qu.edu.qa</p>
+    </footer>
+
+    <script src="instructor.js"></script>
+</body>
+</html>
