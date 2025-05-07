@@ -6,8 +6,8 @@ import { revalidatePath } from "next/cache"
 export async function getAllCoursesAction() {
     return await mycseRepo.getAllCourses()
 }
-export async function getCourseByIdAction(courseId) {
-    return await mycseRepo.getCourseById(courseId)
+export async function getCourseByIdAction(courseCode) {
+    return await mycseRepo.getCourseById(courseCode)
 }
 export async function getCoursesByCategoryAction(category) {
     return await mycseRepo.getCoursesByCategory(category)
