@@ -46,5 +46,8 @@ export async function getCoursePrerequisitesAction(courseCode) {
 export async function getAllSectionsAction(courseCode) {
     return await mycseRepo.getAllSections(courseCode)
 } 
-
-
+export async function getDegreeProgressAction(studentId) {
+    const completedCredits = await repo.getStudentCompletedCredits(studentId)
+    const requiredCredits  = 120
+    return { completedCredits, requiredCredits }
+  }
