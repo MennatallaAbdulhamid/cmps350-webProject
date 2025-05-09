@@ -20,8 +20,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <NavBar />
+      <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+      </head>
+      <body>
+        <header>
+          <img src="/Images/My-removebg-preview.png" alt="Logo" className="logo" />
+        </header>
+        <hr />
         {children}
         <footer>
           <p>&copy; 2022 MYCSE Portal Computer Science and Engineering Department | Contact: support@qu.edu.qa</p>

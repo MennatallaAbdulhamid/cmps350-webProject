@@ -11,8 +11,6 @@ export default function NavBar() {
   }
   
   return (
-    <header>
-      <img src="/Images/My-removebg-preview.png" alt="Logo" />
       <nav>
         <Link href="/">
           <i className="fas fa-th-large"></i>Dashboard
@@ -24,6 +22,5 @@ export default function NavBar() {
           <i className="fas fa-sign-out-alt"></i>Logout
         </a>
       </nav>
-    </header>
   )
 }
