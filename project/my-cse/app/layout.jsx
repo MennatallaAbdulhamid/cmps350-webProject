@@ -23,6 +23,9 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NavBar />
         {children}
+        <footer>
+          <p>&copy; 2022 MYCSE Portal Computer Science and Engineering Department | Contact: support@qu.edu.qa</p>
+        </footer>
       </body>
     </html>
   );

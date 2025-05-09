@@ -1,9 +1,8 @@
-export default async function Home() {
-    
-    return (
-      <>
-        
-      </>
-    )
-  }
-  
+'use client'
+
+export default function Login() {
+  return (
+    <>
+    </>
+  );
+}
