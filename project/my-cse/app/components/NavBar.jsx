@@ -9,25 +9,21 @@ export default function NavBar() {
     localStorage.removeItem('loggedInUser')
     router.push('/login')
   }
-    return (
-        <header>
-        <nav className='nav'>
-            <div className="logo">
-                <img src="/Images/My-removebg-preview.png" alt="Logo" className="logo" />
-            </div>
-            <ul className="navbar-nav">
-                <li>
-                    <Link href="/">Dashboard</Link>
-                </li>
-                <li >
-                    <Link href="/login/StudentDashboard/learningPath">LearningPath</Link>
-                </li>
-                <li>
-                    <button onClick={handleLogout} className="px-3 py-2 text-gray-700 hover:text-gray-900"> Logout </button>
-                </li>
-            </ul>
-        </nav >
-        </header>
-
-    )
+  
+  return (
+    <header>
+      <img src="/Images/My-removebg-preview.png" alt="Logo" />
+      <nav>
+        <Link href="/">
+          <i className="fas fa-th-large"></i>Dashboard
+        </Link>
+        <Link href="/login/StudentDashboard/learningPath">
+          <i className="fas fa-book"></i>LearningPath
+        </Link>
+        <a href="#" onClick={handleLogout}>
+          <i className="fas fa-sign-out-alt"></i>Logout
+        </a>
+      </nav>
+    </header>
+  )
 }
