@@ -10,6 +10,7 @@ export default function NavBar() {
     router.push('/login')
   }
     return (
+        <header>
         <nav className='nav'>
             <div className="logo">
                 <img src="/Images/My-removebg-preview.png" alt="Logo" className="logo" />
@@ -26,6 +27,7 @@ export default function NavBar() {
                 </li>
             </ul>
         </nav >
+        </header>
 
     )
 }
