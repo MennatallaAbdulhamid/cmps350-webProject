@@ -21,7 +21,7 @@ export default function StatisticsPage() {
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Student & Course Analytics Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-4">Welcome to Student and Course Analytics Dashboard</h1>
       <ul className="mb-8 space-y-2 ">
         <li>Total Students: {data.totalStudents}</li>
         <li>Total Courses: {data.totalCourses}</li>
