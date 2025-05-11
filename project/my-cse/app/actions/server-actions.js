@@ -96,3 +96,8 @@ export async function registerSection(formData) {
     // 3) refresh this page’s data
     revalidatePath(`/course-registration?courseCode=${courseCode}`)
   }
+
+  export async function getTotalStudentsByYearAction() {
+    return await mycseRepo.getTotalStudentsByYear()
+  }
+  

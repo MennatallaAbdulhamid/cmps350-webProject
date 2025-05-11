@@ -1,6 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
+//Prisma schema file
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,17 +9,42 @@ datasource db {
 }
 
 model User {
-  email    String @id @unique
+  email    String   @id @unique
   password String
   role     String
+  student  Student?
+  instructor Instructor?
+  admin    Admin?
 }
 
+
 model Student {
-  studentId     String         @id @unique
-  name          String
-  email         String         @unique
-  password      String
-  registrations Registration[] // ← back-relation from Registration.student
+  studentId   String @id @unique
+  name        String
+  email       String @unique
+  password    String
+  yearOfStudy Int
+  userEmail   String @unique
+  user        User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  registrations Registration[]
+}
+model Instructor {
+  instructorId String @id @unique
+  name         String
+  email        String @unique
+  password     String
+  userEmail    String @unique
+  user         User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  sections     Section[]
+}
+
+model Admin {
+  adminId   String @id @unique
+  name      String
+  email     String @unique
+  password  String
+  userEmail String @unique
+  user      User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
 }
 
 model Course {
@@ -30,10 +53,10 @@ model Course {
   category      String
   credits       Int
   description   String
-  prerequisites CoursePrerequisite[] // ← back-relation from CoursePrerequisite.course
-  offerings     SemesterOffering[] // ← back-relation from SemesterOffering.course
-  sections      Section[] // ← your existing back-relation
-  registrations Registration[] // ← NEW: back-relation from Registration.course
+  prerequisites CoursePrerequisite[] 
+  offerings     SemesterOffering[] 
+  sections      Section[] 
+  registrations Registration[] 
 }
 
 model CoursePrerequisite {
@@ -54,14 +77,14 @@ model Section {
   id         String @id
   course     Course @relation(fields: [courseCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
   courseCode String
-  instructor String
   capacity   Int
   schedule   String @default("")
   deadline   String @default("")
   location   String @default("")
-
-  registrations Registration[] // ← NEW: back-relation from Registration.section
-  preferences   Preference[] // ← NEW: back-relation from Preference.section
+  instructorId String
+  instructor   Instructor  @relation(fields: [instructorId], references: [instructorId])
+  registrations Registration[] 
+  preferences   Preference[] 
 }
 
 model Registration {
@@ -78,7 +101,7 @@ model Registration {
   creditsEarned      Int?    @default(0)
   registrationStatus String? @default("")
 
-  preferences Preference[] // ← NEW: back-relation from Preference.registration
+  preferences Preference[]
 }
 
 model Preference {

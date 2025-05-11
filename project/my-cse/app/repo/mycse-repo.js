@@ -1,126 +1,129 @@
 import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 class MyCSERepo {
+  async getStudentById(studentId) {
+    return await prisma.student.findUnique({
+      where: { studentId },
+    });
+  }
 
-    async getStudentById(studentId) {
-        return await prisma.student.findUnique({
-            where: { id: parseInt(studentId) },
-            include: { user: true }
-        })
-    }
+  async getAllCourses() {
+    return await prisma.course.findMany({
+      include: { prerequisites: true },
+    });
+  }
 
-    async getAllCourses() {
-        return await prisma.course.findMany({
-            include: { prerequisites: true }
-        })
-    }
+  async getCourseByCode(courseCode) {
+    return await prisma.course.findUnique({
+      where: { code: courseCode },
+      include: { prerequisites: true },
+    });
+  }
 
-    async getCourseById(courseCode) {
-        return await prisma.course.findUnique({
-            where: { id: parseInt(courseCode) },
-            include: { prerequisites: true }
-        })
-    }
+  async getCoursesByCategory(category) {
+    return await prisma.course.findMany({
+      where: { category },
+      include: { prerequisites: true },
+    });
+  }
 
-    //get all courses for a given category
-    async getCoursesByCategory(category) {
-        return await prisma.course.findMany({
-            where: { category: category },
-            include: { prerequisites: true }
-        })
-    }
+  async createCourse(courseData) {
+    return await prisma.course.create({ data: courseData });
+  }
 
-    async createCourse(courseData) {
-        return await prisma.course.create({ data: courseData })
-    }
+  async updateCourse(courseCode, updatedData) {
+    return await prisma.course.update({
+      where: { code: courseCode },
+      data: updatedData,
+    });
+  }
 
-    async updateCourse(courseCode, updatedData) {
-        return await prisma.course.update({ data: updatedData, where: { id: parseInt(courseCode) } })
-    }
-    async deleteCourse(courseCode) {
-        return await prisma.course.delete({
-            where: { id: parseInt(courseCode) }
-        })
-    }
-   //get offered courses for a given semester offering
-    async getOfferedCourses(semesterOfferingId) {
-        return await prisma.course.findMany({
-            where: { semesterOfferingId: parseInt(semesterOfferingId) },
-            include: { prerequisites: true }
-        })
-    }
+  async deleteCourse(courseCode) {
+    return await prisma.course.delete({
+      where: { code: courseCode },
+    });
+  }
 
-    //get a section for a a given course 
-    async getCourseSections(courseCode) {
-        return await prisma.section.findMany({
-            where: { courseCode: courseCode },
-            include: { semesterOffering: true, registrations: true }
-        })
-    }
+  async getOfferedCourses(semester) {
+    return await prisma.semesterOffering.findMany({
+      where: { semester },
+      include: { course: true },
+    });
+  }
 
-    //for a given sectionId, update the section data like availableSeats, schedule, etc.
-    async updateSection(sectionId, updatedData) {
-        return await prisma.section.update({ data: updatedData, where: { id: parseInt(sectionId) } })
-    }
-  
-    //get all registrations for a given student
-    async getStudentRegistrations(studentId) {
-        return await prisma.registration.findMany({
-            where: { studentId: parseInt(studentId) },
-            include: { section: true, course: true }
-        })
-    }
-    //get all preferences for a given student
-    async getStudentPreferences(studentId) {
-        return await prisma.preference.findMany({
-            where: { studentId: parseInt(studentId) },
-            include: { section: true, course: true }
-        })
-    }
-    //get all completed courses for a given student
-    async getStudentCompletedCourses(studentId) {
-        return await prisma.registration.findMany({
-            where: { studentId: parseInt(studentId), status: "completed" },
-            include: { section: true, course: true }
-        })
-    }
-    //get all pending courses for a given student
-    async getStudentPendingCourses(studentId) {
-        return await prisma.registration.findMany({
-            where: { studentId: parseInt(studentId), status: "pending" },
-            include: { section: true, course: true }
-        })
-    }
-    //get all in progress courses for a given student
-    async getStudentInProgressCourses(studentId) {
-        return await prisma.registration.findMany({
-            where: { studentId: parseInt(studentId), status: "in-progress" },
-            include: { section: true, course: true }
-        })
-    }
+  async getCourseSections(courseCode) {
+    return await prisma.section.findMany({
+      where: { courseCode },
+      include: { registrations: true },
+    });
+  }
 
-    //get total credits for a given student
-    async getStudentCompletedCredits(studentId) {
-        const completedCourses = await this.getStudentCompletedCourses(studentId)
-        const totalCredits = completedCourses.reduce((acc, course) => acc + course.course.credits, 0)
-        return totalCredits
-    }
+  async updateSection(sectionId, updatedData) {
+    return await prisma.section.update({
+      where: { id: sectionId },
+      data: updatedData,
+    });
+  }
+
+  async getStudentRegistrations(studentId) {
+    return await prisma.registration.findMany({
+      where: { studentId },
+      include: { section: true, course: true },
+    });
+  }
+
+  async getStudentCompletedCourses(studentId) {
+    return await prisma.registration.findMany({
+      where: {
+        studentId,
+        status: "completed",
+      },
+      include: { course: true },
+    });
+  }
+
+  async getStudentCompletedCredits(studentId) {
+    const completedCourses = await this.getStudentCompletedCourses(studentId);
+    return completedCourses.reduce(
+      (sum, reg) => sum + (reg.course?.credits || 0),
+      0
+    );
+  }
+
+  async getStudentInProgressCourses(studentId) {
+    return await prisma.registration.findMany({
+      where: {
+        studentId,
+        status: "in-progress",
+      },
+      include: { course: true },
+    });
+  }
+
+  async getStudentPendingCourses(studentId) {
+    return await prisma.registration.findMany({
+      where: {
+        studentId,
+        status: "pending",
+      },
+      include: { course: true },
+    });
+  }
+
+  async getCoursePrerequisites(courseCode) {
+    return await prisma.coursePrerequisite.findMany({
+      where: { courseCode },
+    });
+  }
+  async getTotalStudentsByYear() {
+    return await prisma.student.groupBy({
+      by: ['year'],
+      _count: { id: true },
+    });
+  }
     
-    //get prerequisites for a given course
-    async getCoursePrerequisites(courseCode) {
-        return await prisma.coursePrerequisite.findMany({
-            where: { courseCode: parseInt(courseCode) },
-            include: { prerequisite: true }
-        })
-    }
-
-    
-    
-
-
-
-
 }
 
-export default new MyCSERepo()
+
+export default new MyCSERepo();
