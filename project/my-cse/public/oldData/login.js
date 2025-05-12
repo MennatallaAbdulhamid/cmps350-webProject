@@ -68,44 +68,42 @@ document.addEventListener('DOMContentLoaded', function() {
     mycseDiv.appendChild(welcomeDiv);
     mycseDiv.appendChild(loginContainerDiv);
     logincontainer.appendChild(mycseDiv);
-      
 
+    // Add event listener to the login button
+    // Fetch users from JSON file and validate login credentials
+    loginbttn.addEventListener("click", async function () {
+        const email = emailInput.value.trim().toLowerCase();
+        const password = passwordInput.value.trim();
 
-  loginbttn.addEventListener('click', async function(e) {
-    e.preventDefault();
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value;
+        try {
+            const res = await fetch('users.json');
+            const users = await res.json();
+            const user = users.find(u => u.email === email && u.password === password);
 
-    try {
-      const res = await fetch('/api/login', {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
+            if (!user) {
+                alert('Invalid email or password.');
+                return;
+            }
 
-      if (!res.ok) {
-        const err = await res.json();
-        return alert(err.error || 'Login failed');
-      }
+            localStorage.setItem('loggedInUser', JSON.stringify(user));
+            alert('Login successful!');
 
-      const user = await res.json();
-      switch (user.role) {
-        case 'student':
-          window.location.href = 'studentDashboard.html';
-          break;
-        case 'instructor':
-          window.location.href = 'instructorDashboard.html';
-          break;
-        case 'admin':
-          window.location.href = 'adminDashboard.html';
-          break;
-        default:
-          alert('Unknown role.');
-      }
-    } catch (err) {
-      console.error('Login error:', err);
-      alert('An error occurred. Please try again.');
-    }
-  });
+            switch (user.role) {
+                case 'student':
+                    window.location.href = 'studentDashboard.html';
+                    break;
+                case 'instructor':
+                    window.location.href = 'instructorDashboard.html';
+                    break;
+                case 'admin':
+                    window.location.href = 'adminDashboard.html';
+                    break;
+                default:
+                    alert('Unknown role.');
+            }
+
+        } catch (err) {
+            console.error("Error loading users:", err);
+        }
+    });
 });

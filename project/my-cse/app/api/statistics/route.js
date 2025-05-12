@@ -1,199 +1,218 @@
 // app/api/statistics/route.js
-import { NextResponse } from 'next/server';
-import mycseRepo from '@/app/repo/mycse-repo';
+import { prisma } from '@/lib/prisma';
 
 export async function GET() {
   try {
-    // Basic counts
-    const courses = await mycseRepo.getAllCourses();
-    const totalCourses = courses.length;
-    
-    // Get all students
-    const students = await prisma.student.findMany();
-    const totalStudents = students.length;
-    
-    // Students per year
-    const studentsPerYear = await mycseRepo.getTotalStudentsByYear();
-    
-    // Get registrations with course info
-    const registrations = await prisma.registration.findMany({
-      include: {
-        course: true,
-        student: true
-      }
+    const totalStudents = await prisma.student.count();
+    const totalCourses = await prisma.course.count();
+
+    const topCoursesRaw = await prisma.registration.groupBy({
+      by: ['courseCode'],
+      _count: { courseCode: true },
+      orderBy: { _count: { courseCode: 'desc' } },
+      take: 3,
     });
-    
-    // Top courses by registration count
-    const courseCounts = {};
-    registrations.forEach(reg => {
-      const courseCode = reg.courseCode;
-      courseCounts[courseCode] = (courseCounts[courseCode] || 0) + 1;
-    });
-    
-    const topCourses = Object.entries(courseCounts)
-      .map(([code, count]) => {
-        const course = courses.find(c => c.code === code);
+
+    const topCourses = await Promise.all(
+      topCoursesRaw.map(async (entry) => {
+        const course = await prisma.course.findUnique({
+          where: { code: entry.courseCode },
+        });
         return {
-          code,
-          name: course?.name || code,
-          count
+          name: course?.name || entry.courseCode,
+          count: entry._count.courseCode,
         };
       })
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 3);
-    
-    // Filter CS and CE courses
-    const csCourses = courses.filter(c => c.category === 'CS');
-    const ceCourses = courses.filter(c => c.category === 'Engineering');
-    
-    // CS courses with student count
-    const csStudentsCourseData = csCourses.map(course => {
-      const count = registrations.filter(r => r.courseCode === course.code).length;
-      return {
-        course: course.name,
-        students: count
-      };
-    }).sort((a, b) => b.students - a.students).slice(0, 5);
-    
-    // CE courses with student count
-    const ceStudentsCourseData = ceCourses.map(course => {
-      const count = registrations.filter(r => r.courseCode === course.code).length;
-      return {
-        course: course.name,
-        students: count
-      };
-    }).sort((a, b) => b.students - a.students).slice(0, 5);
-    
-    // Most taken courses by year
-    const coursesByYear = {};
-    registrations.forEach(reg => {
-      const student = students.find(s => s.studentId === reg.studentId);
-      if (student) {
-        const year = student.yearOfStudy;
-        if (!coursesByYear[year]) coursesByYear[year] = {};
-        
-        const courseCode = reg.courseCode;
-        coursesByYear[year][courseCode] = (coursesByYear[year][courseCode] || 0) + 1;
+    );
+
+ const studentsPerCourse = await prisma.course.findMany({
+  where: { category: 'CS' }, 
+  select: {
+    name: true,
+    registrations: { select: { id: true } }
+  }
+});
+
+const  csStudentsCourseData= studentsPerCourse
+   .map(course => ({
+    course: course.name.length > 20 ? course.name.slice(0, 9) + '...' : course.name,
+    students: course.registrations.length
+  }))
+  .sort((a, b) => b.students - a.students)
+  .slice(0, 20); 
+
+const allCategories = await prisma.course.findMany({
+      select: {
+        category: true,
+        registrations: {
+          select: { grade: true },
+        },
+      },
+    });
+
+const ceCourses = await prisma.course.findMany({
+  where: { category: 'Engineering' }, 
+  select: {
+    name: true,
+    registrations: { select: { id: true } }
+  }
+});
+const ceStudentsCourseData = ceCourses
+  .map(course => ({
+    course: course.name.length > 20 ? course.name.slice(0, 9) + '...' : course.name,
+    students: course.registrations.length
+  }))
+  .sort((a, b) => b.students - a.students)
+  .slice(0, 20); 
+
+const csCeCourses = await prisma.course.findMany({
+  where: {
+    OR: [
+      { category: 'CS' },
+      { category: 'Engineering' } 
+    ]
+  },
+  select: {
+    name: true,
+    category: true,
+    registrations: { select: { grade: true } }
+  }
+});
+// Calculate pass rates for CS and CE courses
+const csCePassRateData = csCeCourses.map(course => {
+  const total = course.registrations.length;
+  const passed = course.registrations.filter(r => r.grade !== 'F').length;
+  return {
+    course: course.name.length > 15 ? course.name.slice(0, 10) + '...' : course.name,
+    category: course.category,
+    passRate: total > 0 ? (passed / total) * 100 : 0
+  };
+}).sort((a, b) => b.passRate - a.passRate);
+ const categoryMap = {};
+
+allCategories.forEach(course => {
+  if (!categoryMap[course.category]) {
+    categoryMap[course.category] = { total: 0, failures: 0 };
+  }
+  categoryMap[course.category].total += course.registrations.length;
+  categoryMap[course.category].failures += course.registrations.filter(r => r.grade === 'F').length;
+});
+
+// Grade distribution for first-year students
+const firstYearStudents = await prisma.student.findMany({
+  where: { yearOfStudy: 1 },
+  select: { studentId: true }
+});
+const firstYearStudentIds = firstYearStudents.map(s => s.studentId);
+
+const firstYearRegistrations = await prisma.registration.findMany({
+  where: {
+    studentId: { in: firstYearStudentIds },
+    course: {
+      category: { in: ['CS', 'Engineering'] }
+    }
+  },
+  select: { grade: true }
+});
+
+const gradeCounts = { A: 0, B: 0, C: 0, D: 0 };
+firstYearRegistrations.forEach(r => {
+  if (gradeCounts[r.grade] !== undefined) gradeCounts[r.grade]++;
+});
+const firstYearGradeDistribution = Object.entries(gradeCounts).map(([grade, count]) => ({
+  grade,
+  count
+}));
+// Most taken course by students in each year 
+async function getMostTakenCourseByYear(year) {
+  const registrations = await prisma.registration.findMany({
+    where: {
+      student: { yearOfStudy: year }
+    },
+    select: { courseCode: true }
+  });
+  const courseCounts = {};
+  registrations.forEach(r => {
+    courseCounts[r.courseCode] = (courseCounts[r.courseCode] || 0) + 1;
+  });
+  let maxCourse = null, maxCount = 0;
+  for (const [courseCode, count] of Object.entries(courseCounts)) {
+    if (count > maxCount) {
+      maxCourse = courseCode;
+      maxCount = count;
+    }
+  }
+  if (!maxCourse) return null;
+  const course = await prisma.course.findUnique({ where: { code: maxCourse } });
+  return { year, course: course?.name || maxCourse, count: maxCount };
+}
+
+const mostTakenCoursesByYear = await Promise.all([
+  getMostTakenCourseByYear(1),
+  getMostTakenCourseByYear(2),
+  getMostTakenCourseByYear(3),
+  getMostTakenCourseByYear(4),
+]);
+
+// Calculate failure rates per category
+const failureRateCategoryData = Object.entries(categoryMap).map(([category, { total, failures }]) => ({
+  category,
+  failureRate: total > 0 ? (failures / total) * 100 : 0
+}));
+    const studentsPerYear = await prisma.student.groupBy({
+        by: ['yearOfStudy'],
+        _count: { yearOfStudy: true },
+      });
+
+
+
+// Most failed course by category
+const categories = ['CS', 'Engineering', 'Math', 'Physics'];
+const mostFailedCourseByCategory = [];
+
+for (const category of categories) {
+  const courses = await prisma.course.findMany({
+    where: { category },
+    select: { code: true, name: true }
+  });
+
+  let maxFailures = 0;
+  let mostFailedCourse = null;
+
+  for (const course of courses) {
+    const failures = await prisma.registration.count({
+      where: {
+        courseCode: course.code,
+        grade: 'F'
       }
     });
-    
-    const mostTakenCoursesByYear = Object.entries(coursesByYear).map(([year, courses]) => {
-      const mostTaken = Object.entries(courses)
-        .sort((a, b) => b[1] - a[1])[0];
+    if (failures > maxFailures) {
+      maxFailures = failures;
+      mostFailedCourse = { category, course: course.name, failures };
+    }
+  }
+
+  if (mostFailedCourse) {
+    mostFailedCourseByCategory.push(mostFailedCourse);
+  }
+}
+
       
-      const courseCode = mostTaken[0];
-      const count = mostTaken[1];
-      const course = courses.find(c => c.code === courseCode);
-      
-      return {
-        year: parseInt(year),
-        course: course?.name || courseCode,
-        count
-      };
-    });
-    
-    // Course pass/fail data
-    const courseGrades = {};
-    registrations.forEach(reg => {
-      if (!reg.grade) return;
-      
-      const courseCode = reg.courseCode;
-      if (!courseGrades[courseCode]) courseGrades[courseCode] = { passes: 0, fails: 0, total: 0 };
-      
-      courseGrades[courseCode].total += 1;
-      if (reg.grade === 'F') {
-        courseGrades[courseCode].fails += 1;
-      } else {
-        courseGrades[courseCode].passes += 1;
-      }
-    });
-    
-    // Failure rate by category
-    const failuresByCategory = {};
-    courses.forEach(course => {
-      const category = course.category;
-      if (!failuresByCategory[category]) failuresByCategory[category] = { fails: 0, total: 0 };
-      
-      if (courseGrades[course.code]) {
-        failuresByCategory[category].fails += courseGrades[course.code].fails;
-        failuresByCategory[category].total += courseGrades[course.code].total;
-      }
-    });
-    
-    const failureRateCategoryData = Object.entries(failuresByCategory).map(([category, data]) => ({
-      category,
-      failureRate: data.total ? Math.round((data.fails / data.total) * 100) : 0
-    }));
-    
-    // Most failed course by category
-    const mostFailedCourseByCategory = Object.entries(
-      registrations.reduce((acc, reg) => {
-        if (reg.grade === 'F') {
-          const course = courses.find(c => c.code === reg.courseCode);
-          if (course) {
-            const category = course.category;
-            if (!acc[category]) acc[category] = {};
-            if (!acc[category][reg.courseCode]) acc[category][reg.courseCode] = 0;
-            acc[category][reg.courseCode]++;
-          }
-        }
-        return acc;
-      }, {})
-    ).map(([category, courseFails]) => {
-      const [courseCode, failures] = Object.entries(courseFails)
-        .sort((a, b) => b[1] - a[1])[0];
-      const course = courses.find(c => c.code === courseCode);
-      return {
-        category,
-        course: course?.name || courseCode,
-        failures
-      };
-    });
-    
-    // CS & CE pass rates
-    const csCePassRateData = [...csCourses, ...ceCourses].map(course => {
-      const grades = courseGrades[course.code] || { passes: 0, total: 0 };
-      return {
-        category: course.category,
-        course: course.name,
-        passRate: grades.total ? Math.round((grades.passes / grades.total) * 100) : 0
-      };
-    });
-    
-    // First year grade distribution
-    const firstYearGrades = registrations.filter(reg => {
-      const student = students.find(s => s.studentId === reg.studentId);
-      return student && student.yearOfStudy === 1;
-    }).reduce((acc, reg) => {
-      if (reg.grade) {
-        acc[reg.grade] = (acc[reg.grade] || 0) + 1;
-      }
-      return acc;
-    }, {});
-    
-    const firstYearGradeDistribution = Object.entries(firstYearGrades).map(([grade, count]) => ({
-      grade,
-      count
-    }));
-    
-    return NextResponse.json({
+    return Response.json({
       totalStudents,
       totalCourses,
-      studentsPerYear,
       topCourses,
       csStudentsCourseData,
       ceStudentsCourseData,
+      csCePassRateData,
+      firstYearGradeDistribution,
       mostTakenCoursesByYear,
       failureRateCategoryData,
       mostFailedCourseByCategory,
-      csCePassRateData,
-      firstYearGradeDistribution
+      studentsPerYear,
     });
   } catch (error) {
-    console.error('Statistics API error:', error);
-    return NextResponse.json(
-      { error: 'Failed to fetch statistics' },
-      { status: 500 }
-    );
+    console.error('API error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to fetch data' }), { status: 500 });
   }
 }
