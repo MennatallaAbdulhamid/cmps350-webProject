@@ -132,6 +132,13 @@ class MyCSERepo {
       },
     });
   }
+
+  //  create a new registration
+  async createRegistration(registrationData) {
+    return await prisma.registration.create({
+      data: registrationData,
+    });
+  }
 }
 
 export default new MyCSERepo();

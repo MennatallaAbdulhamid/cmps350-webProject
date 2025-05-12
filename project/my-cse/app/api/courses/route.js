@@ -1,5 +1,5 @@
 // pages/api/courses/index.js
-import repo from '../../../lib/mycse-repo';
+import repo from '@/app/repo/mycse-repo';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
