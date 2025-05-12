@@ -294,6 +294,33 @@ footer {
   height: 400px;
 }
 
+main {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background: var(--color-background);
+}
+
+.MYCSE {
+  margin-top: 30px;
+}
+
+.loginContainer {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(99,74,255,0.08);
+  border-radius: 12px;
+  padding: 24px 18px;
+}
+
+.loginform {
+  margin-top: 10px;
+}
+
 
  
 

@@ -1,10 +1,8 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Login page loaded successfully');
 
     const logincontainer = document.getElementById("login-container");
 
- 
     const mycseDiv = document.createElement('div');
     mycseDiv.classList.add('MYCSE');
 
@@ -69,22 +67,24 @@ document.addEventListener('DOMContentLoaded', function() {
     mycseDiv.appendChild(loginContainerDiv);
     logincontainer.appendChild(mycseDiv);
 
-    // Add event listener to the login button
-    // Fetch users from JSON file and validate login credentials
+    // Use API to validate login credentials
     loginbttn.addEventListener("click", async function () {
         const email = emailInput.value.trim().toLowerCase();
         const password = passwordInput.value.trim();
 
         try {
-            const res = await fetch('users.json');
-            const users = await res.json();
-            const user = users.find(u => u.email === email && u.password === password);
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
 
-            if (!user) {
+            if (!res.ok) {
                 alert('Invalid email or password.');
                 return;
             }
 
+            const { user } = await res.json();
             localStorage.setItem('loggedInUser', JSON.stringify(user));
             alert('Login successful!');
 
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
         } catch (err) {
-            console.error("Error loading users:", err);
+            console.error("Error logging in:", err);
         }
     });
 });

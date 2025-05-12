@@ -82,6 +82,19 @@ class MyCSERepo {
       include: { course: true },
     });
   }
+  async getStudentByEmail(email) {
+    return await prisma.student.findFirst({
+      where: { email },
+    });
+  }
+  async getUserByEmailAndPassword(email, password) {
+  return await prisma.user.findFirst({
+    where: {
+      email,
+      password,
+    },
+  });
+}
 
   async getStudentCompletedCredits(studentId) {
     const completedCourses = await this.getStudentCompletedCourses(studentId);

@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache"
 export async function getAllCoursesAction() {
     return await mycseRepo.getAllCourses()
 }
+
 export async function getCourseByIdAction(courseCode) {
     return await mycseRepo.getCourseById(courseCode)
 }
@@ -68,6 +69,10 @@ export async function getStudentById(studentId) {
 //getStudentRegistrations
 export async function getStudentRegistrations(studentId) {
     return await mycseRepo.getStudentRegistrations(studentId)
+}
+//getStudentByEmail
+export async function getStudentByEmailAction(email) {
+    return await mycseRepo.getStudentByEmail(email)
 }
 //getStudentPreferences
 export async function getStudentPreferences(studentId) {
