@@ -116,23 +116,22 @@ class MyCSERepo {
       where: { courseCode },
     });
   }
+  
   async getTotalStudentsByYear() {
     return await prisma.student.groupBy({
-      by: ['year'],
-      _count: { id: true },
+      by: ['yearOfStudy'],  // Changed from 'year' to 'yearOfStudy'
+      _count: { yearOfStudy: true }, // Changed from 'id' to 'yearOfStudy'
     });
   }
 
   async getUserByEmailAndPassword(email, password) {
-    const user = await prisma.user.findUnique({
+    return await prisma.user.findUnique({
       where: {
         email: email,
         password: password,
       },
-    })
+    });
   }
-    
 }
-
 
 export default new MyCSERepo();
