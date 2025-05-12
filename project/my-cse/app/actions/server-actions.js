@@ -1,103 +1,300 @@
-'use server'
-import mycseRepo from "../repo/mycse-repo"
-import { redirect } from "next/navigation"
-import { revalidatePath } from "next/cache"
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
-export async function getAllCoursesAction() {
-    return await mycseRepo.getAllCourses()
-}
-export async function getCourseByIdAction(courseCode) {
-    return await mycseRepo.getCourseById(courseCode)
-}
-export async function getCoursesByCategoryAction(category) {
-    return await mycseRepo.getCoursesByCategory(category)
-}
-export async function getOfferedCoursesAction(semesterOfferingId) {
-    return await mycseRepo.getOfferedCourses(semesterOfferingId)
-}
-export async function getCourseSectionsAction(courseCode) {
-    return await mycseRepo.getCourseSections(courseCode)
-}
-
-// get completed courses for a given student
-export async function getCompletedCoursesAction(studentId) {
-    return await mycseRepo.getCompletedCourses(studentId)
-}
-// get all courses for a given student
-export async function getAllCoursesForStudentAction(studentId) {
-    return await mycseRepo.getAllCoursesForStudent(studentId)
-}
-//get in progress courses for a given student
-export async function getInProgressCoursesAction(studentId) {
-    return await mycseRepo.getInProgressCourses(studentId)
-}
-// get pending courses for a given student
-export async function getPendingCoursesAction(studentId) {
-    return await mycseRepo.getPendingCourses(studentId)
-}
-//student’s total completed credits
-export async function getCompletedCreditsAction(studentId) {
-    return await mycseRepo.getCompletedCredits(studentId)
-}
-// get course prerequisites for a given course
-export async function getCoursePrerequisitesAction(courseCode) {
-    return await mycseRepo.getCoursePrerequisites(courseCode)
-}// get all sections for a given course
-export async function getAllSectionsAction(courseCode) {
-    return await mycseRepo.getAllSections(courseCode)
-} 
-export async function getDegreeProgressAction(studentId) {
-    const completedCredits = await repo.getStudentCompletedCredits(studentId)
-    const requiredCredits  = 120
-    return { completedCredits, requiredCredits }
+class MyCSERepo {
+  // Authentication
+  async getUserByEmailAndPassword(email, password) {
+    return await prisma.user.findFirst({
+      where: {
+        email: email,
+        password: password,
+      },
+      include: {
+        student: true,
+        instructor: true,
+        admin: true
+      }
+    });
   }
 
-//getCourseRegistrationData
-export async function getCourseRegistrationData(studentId, courseCode) {
-    const student = await mycseRepo.getStudentById(studentId)
-    const course = await mycseRepo.getCourseById(courseCode)
-    const sections = await mycseRepo.getCourseSections(courseCode)
-    const unmet = await mycseRepo.getCoursePrerequisites(courseCode)
-
-    return { student, course, sections, unmet }
-}
-//getStudentById
-export async function getStudentById(studentId) {
-    return await mycseRepo.getStudentById(studentId)
-}
-//getStudentRegistrations
-export async function getStudentRegistrations(studentId) {
-    return await mycseRepo.getStudentRegistrations(studentId)
-}
-//getStudentPreferences
-export async function getStudentPreferences(studentId) {
-    return await mycseRepo.getStudentPreferences(studentId)
-}
-
-export async function registerSection(formData) {
-    const studentId  = parseInt(formData.get('studentId'), 10)
-    const courseCode = parseInt(formData.get('courseCode'), 10)
-    const sectionId  = parseInt(formData.get('sectionId'), 10)
-  
-    // 1) decrement seats
-    const secs   = await repo.getCourseSections(courseCode)
-    const target = secs.find(s => s.id === sectionId)
-    await repo.updateSection(sectionId, {
-      availableSeats: target.availableSeats - 1
-    })
-  
-    // 2) create registration
-    await repo.createRegistration({
-      studentId,
-      sectionId,
-      status: 'enrolled'
-    })
-  
-    // 3) refresh this page’s data
-    revalidatePath(`/course-registration?courseCode=${courseCode}`)
+  // Student operations
+  async getStudentById(studentId) {
+    return await prisma.student.findUnique({
+      where: { studentId },
+      include: {
+        user: {
+          select: {
+            email: true,
+            role: true
+          }
+        }
+      }
+    });
   }
 
-  export async function getTotalStudentsByYearAction() {
-    return await mycseRepo.getTotalStudentsByYear()
+  // Course operations
+  async getAllCourses() {
+    return await prisma.course.findMany({
+      select: {
+        code: true,
+        name: true,
+        category: true,
+        credits: true,
+        description: true
+      }
+    });
   }
-  
+
+  async getCourseById(courseCode) {
+    return await prisma.course.findUnique({
+      where: { code: courseCode },
+      include: {
+        prerequisites: true  
+      }
+    });
+  }
+
+  async getCoursesByCategory(category) {
+    return await prisma.course.findMany({
+      where: { category },
+      select: {
+        code: true,
+        name: true,
+        category: true,
+        credits: true,
+        description: true
+      }
+    });
+  }
+
+  async createCourse(courseData) {
+    return await prisma.course.create({ data: courseData });
+  }
+
+  async updateCourse(courseCode, updatedData) {
+    return await prisma.course.update({
+      where: { code: courseCode },
+      data: updatedData,
+    });
+  }
+
+  async deleteCourse(courseCode) {
+    return await prisma.course.delete({
+      where: { code: courseCode },
+    });
+  }
+
+  // Semester offerings
+  async getOfferedCourses(semester) {
+    return await prisma.semesterOffering.findMany({
+      where: { semester },
+      include: { 
+        course: {
+          select: {
+            code: true,
+            name: true,
+            category: true,
+            credits: true
+          }
+        } 
+      }
+    });
+  }
+
+  // Sections
+  async getCourseSections(courseCode) {
+    return await prisma.section.findMany({
+      where: { courseCode },
+      include: { 
+        instructor: {
+          select: {
+            name: true
+          }
+        }
+      }
+    });
+  }
+
+  async getAllSections() {
+    return await prisma.section.findMany({
+      include: {
+        course: {
+          select: {
+            code: true,
+            name: true
+          }
+        },
+        instructor: {
+          select: {
+            name: true
+          }
+        }
+      }
+    });
+  }
+
+  async updateSection(sectionId, updatedData) {
+    return await prisma.section.update({
+      where: { id: sectionId },
+      data: updatedData,
+    });
+  }
+
+  // Registrations
+  async getStudentRegistrations(studentId) {
+    return await prisma.registration.findMany({
+      where: { studentId },
+      include: { 
+        section: true, 
+        course: true 
+      }
+    });
+  }
+
+  async getCompletedCourses(studentId) {
+    return await prisma.registration.findMany({
+      where: {
+        studentId,
+        status: "completed",
+      },
+      include: { 
+        course: {
+          select: {
+            code: true,
+            name: true,
+            category: true,
+            credits: true
+          }
+        } 
+      }
+    });
+  }
+
+  async getCompletedCredits(studentId) {
+    const completedCourses = await this.getCompletedCourses(studentId);
+    return completedCourses.reduce(
+      (sum, reg) => sum + (reg.course?.credits || 0),
+      0
+    );
+  }
+
+  async getInProgressCourses(studentId) {
+    return await prisma.registration.findMany({
+      where: {
+        studentId,
+        status: "in-progress",
+      },
+      include: { 
+        course: {
+          select: {
+            code: true,
+            name: true,
+            category: true,
+            credits: true
+          }
+        } 
+      }
+    });
+  }
+
+  async getPendingCourses(studentId) {
+    return await prisma.registration.findMany({
+      where: {
+        studentId,
+        status: "pending",
+      },
+      include: { 
+        course: {
+          select: {
+            code: true,
+            name: true,
+            category: true,
+            credits: true
+          }
+        } 
+      }
+    });
+  }
+
+  async getAllCoursesForStudent(studentId) {
+    return await prisma.registration.findMany({
+      where: { studentId },
+      include: {
+        course: {
+          select: {
+            code: true,
+            name: true,
+            category: true,
+            credits: true
+          }
+        },
+        section: {
+          select: {
+            id: true,
+            schedule: true,
+            location: true
+          }
+        }
+      }
+    });
+  }
+
+  // Prerequisites
+  async getCoursePrerequisites(courseCode) {
+    return await prisma.coursePrerequisite.findMany({
+      where: { courseCode },
+    });
+  }
+
+  // Student preferences
+  async getStudentPreferences(studentId) {
+    return await prisma.registration.findMany({
+      where: { studentId },
+      include: {
+        preferences: {
+          include: {
+            section: true
+          }
+        }
+      }
+    });
+  }
+
+  // Registration creation
+  async createRegistration(data) {
+    return await prisma.registration.create({
+      data: {
+        studentId: data.studentId,
+        courseCode: data.courseCode,
+        sectionId: data.sectionId,
+        semester: data.semester || "2023-2024",
+        status: data.status || "pending",
+      }
+    });
+  }
+
+  // Course registration data
+  async getCourseRegistrationData(studentId, courseCode) {
+    const student = await this.getStudentById(studentId);
+    const course = await this.getCourseById(courseCode);
+    const sections = await this.getCourseSections(courseCode);
+    const unmet = await this.getCoursePrerequisites(courseCode);
+
+    return { student, course, sections, unmet };
+  }
+
+  // Statistics
+  async getTotalStudentsByYear() {
+    return await prisma.student.groupBy({
+      by: ['yearOfStudy'],
+      _count: {
+        studentId: true
+      },
+      orderBy: {
+        yearOfStudy: 'asc'
+      }
+    });
+  }
+}
+
+export default new MyCSERepo();

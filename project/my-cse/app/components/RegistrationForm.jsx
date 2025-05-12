@@ -5,12 +5,13 @@ import { registerSection } from '@/app/actions/server-actions'
 export default function RegistrationForm({ student, course, sections, unmet }) {
   const [selected, setSelected] = useState()
 
-  // if you’re missing prereqs, just show that message
   if (unmet.length > 0) {
     return (
       <div className="section-selection">
         <h2>Select Section</h2>
-        <p>You have not completed the prerequisites: {unmet.join(', ')}</p>
+        <p>You have not completed the prerequisites: 
+          {unmet.map(prereq => prereq.prerequisiteCode || prereq).join(', ')}
+        </p>
       </div>
     )
   }
@@ -33,7 +34,7 @@ export default function RegistrationForm({ student, course, sections, unmet }) {
             <tr key={sec.id} className={sec.availableSeats === 0 ? 'disabled-row' : ''}>
               <td>{sec.id}</td>
               <td>{sec.schedule}</td>
-              <td>{sec.instructor}</td>
+              <td>{sec.instructor?.name || 'Not assigned'}</td>
               <td>{sec.availableSeats} / {sec.seats}</td>
               <td>
                 <input
@@ -55,12 +56,13 @@ export default function RegistrationForm({ student, course, sections, unmet }) {
         <label htmlFor="student-id">Student ID</label>
         <p id="student-id">{student.id}</p>
         <label htmlFor="email">Email</label>
-        <p id="email">{student.user.email}</p>
+        <p id="email">{student.email}</p>
       </div>
 
       {/* hidden fields for the server-action */}
-      <input type="hidden" name="studentId"  value={student.id} />
-      <input type="hidden" name="courseCode" value={course.id} />
+      <p id="student-id">{student.studentId}</p>
+      <input type="hidden" name="studentId" value={student.studentId} />
+      <input type="hidden" name="courseCode" value={course.code} />
 
       {/* Actions */}
       <div className="actions">

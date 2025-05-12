@@ -122,6 +122,15 @@ class MyCSERepo {
       _count: { id: true },
     });
   }
+
+  async getUserByEmailAndPassword(email, password) {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+        password: password,
+      },
+    })
+  }
     
 }
 
