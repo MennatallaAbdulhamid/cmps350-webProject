@@ -1,0 +1,7 @@
+[
+    { "courseCode": "COMP202", "prerequisiteCode": "COMP101" },
+    { "courseCode": "COMP201", "prerequisiteCode": "COMP101" },
+    { "courseCode": "COMP301", "prerequisiteCode": "COMP202" },
+    { "courseCode": "COMP401", "prerequisiteCode": "COMP301" }
+  ]
+  

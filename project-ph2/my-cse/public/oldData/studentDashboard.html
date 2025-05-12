@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>Student Dashboard</title>
+</head>
+<body>
+    <header>
+      <img src="Images/My-removebg-preview.png" alt="Logo" class="logo">
+      <nav>
+        <a href="studentDashboard.html"><i class ="fas fa-tachometer-alt"></i>Dashboard</a>
+        <a href="LearningPath.html"><i class="fas fa-book"></i>LearningPath</a>
+        <a href="#" id="logoutLink"><i class="fas fa-door-open"></i>Logout</a>
+    </nav>
+    </header>
+    <hr>
+<main>  
+  <div class="container">
+      <div class="sidebar">
+        <h1>Welcome to Mycse Student Dashboard</h1>
+        <p>Available Courses</p>
+      </div>
+      <div class="search"> 
+        <div class ="search-bar">
+            <label for="searchInput">Search Courses</label>
+            <input type="text" placeholder="Search for courses..." id="searchInput">
+        </div>
+        <div class ="search-category">
+            <label for="categorySelect">Course Category</label>
+            <select id="categorySelect">
+              <option value="all">All</option>
+              <option value="Computer Science">Computer Science</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Biology">Biology</option>
+              <option value="Humanities">Humanities</option>
+              <option value="Languages">Languages</option>
+              <option value="Religious Studies">Religious Studies</option>
+            </select>
+            </div>
+            <div class ="search-Button">
+              <button type="submit" id="searchButton">Search</button>
+            </div>
+      </div>
+      <div class ="coursesList">
+         <!-- <div class="course-card">
+          <h3>COMP 101</h3>
+          <p id ="courseName">Introduction to Computer Science</p>
+          <p id ="courseCategory">Category: Computer Science</p>
+          <p id ="courseCredits">Credits: 3</p>
+          <button class="View-button">View Course</button>
+        </div>
+        <div class="course-card">
+          <h3>COMP 201</h3>
+          <p id ="courseName">Data Structures</p>
+          <p id ="courseCategory">Category: Computer Science</p>
+          <p id ="courseCredits">Credits: 3</p>
+          <button class="View-button">View Course</button>
+        </div>
+        <div class="course-card">
+          <h3>COMP 202</h3>
+          <p id ="courseName">Algorithms</p>
+          <p id ="courseCategory">Category: Computer Science</p>
+          <p id ="courseCredits">Credits: 3</p>
+          <button class="View-button">View Course</button>
+        </div>
+        <div class="course-card">
+          <h3>MATH 101</h3>
+          <p id ="courseName">Calculus I</p>
+          <p id ="courseCategory">Category: Mathematics</p>
+          <p id ="courseCredits">Credits: 4</p>
+          <button class="View-button">View Course</button>
+        </div>
+        <div class="course-card">
+          <h3>PHY 201</h3>
+          <p id ="courseName">Classical Mechanics</p>
+          <p id ="courseCategory">Category: Physics</p>
+          <p id ="courseCredits">Credits: 4</p>
+          <button class="View-button">View Course</button>
+        </div>
+        <div class="course-card">
+          <h3>CHEM 101</h3>
+          <p id ="courseName">General Chemistry</p>
+          <p id ="courseCategory">Category: Chemistry</p>
+          <p id ="courseCredits">Credits: 4</p>
+          <button class="View-button">View Course</button>
+        </div> -->
+    </div>
+    <div class="loadMore">
+      <button class="loadMoreButton">Load More Courses</button>
+    </div>
+  </div>
+        
+    </main>
+    <footer>
+      <p>&copy; 2022 MYCSE Portal Computer Science and Engineering Department | Contact: support@qu.edu.qa</p>
+    </footer>
+    <script src="dashboard.js"></script>
+</body>
+</html>

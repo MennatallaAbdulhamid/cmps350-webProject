@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Course</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/createCourse.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+  
+    <header>
+        <img src="Images/My-removebg-preview.png" alt="Logo" class="logo">
+        <nav>
+            <a href="createCourse.html"><i class="fas fa-plus"></i>Create Course</a>
+            <a href="adminDashboard.html"><i class="fas fa-users"></i>Admin Dashboard</a>
+            <a href="#" id="logoutLink"><i class="fas fa-door-open"></i>Logout</a>
+        </nav>
+      </header>
+
+    <!-- Main Content -->
+    <main>
+        
+        <div id="create-course-container">
+            <form id="course-form">
+                <div class="form-group">
+                    <label for="course-code">Course Code:</label>
+                    <input type="text" id="course-code" name="code" required placeholder="e.g., CSE101">
+                </div>
+
+                <div class="form-group">
+                    <label for="course-name">Course Name:</label>
+                    <input type="text" id="course-name" name="name" required placeholder="e.g., Introduction to Computer Science">
+                </div>
+
+                <div class="form-group">
+                    <label for="course-category">Category:</label>
+                    <select id="course-category" name="category" required>
+                        <option value="">Select a category</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Humanities">Humanities</option>
+                        <option value="Languages">Languages</option>
+                        <option value="Religious Studies">Religious Studies</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="course-credits">Credits:</label>
+                    <input type="number" id="course-credits" name="credits" min="1" max="6" value="3" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="course-description">Description:</label>
+                    <textarea id="course-description" name="description" rows="3" placeholder="Course description..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="course-prerequisites">Prerequisites (comma separated):</label>
+                    <input type="text" id="course-prerequisites" name="prerequisites" placeholder="e.g., CSE100, MATH101">
+                </div>
+
+                <div class="form-group">
+                    <label>Semesters Offered:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="semester-fall" name="semesters" value="Fall" checked> Fall</label>
+                        <label><input type="checkbox" id="semester-spring" name="semesters" value="Spring"> Spring</label>
+                        <label><input type="checkbox" id="semester-summer" name="semesters" value="Summer"> Summer</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="course-status">Status:</label>
+                    <select id="course-status" name="status" required>
+                        <option value="Closed">Pending (closed)</option>
+                        <option value="Open">Open</option>
+                    </select>
+                </div>
+
+                <h3>Classes</h3>
+                <div id="classes-container">
+                    <div class="class-entry">
+                        <div class="form-group">
+                            <label for="class-id-0">Class ID:</label>
+                            <input type="text" id="class-id-0" name="class_id_0" required placeholder="e.g., SEC01">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="instructor-0">Instructor:</label>
+                            <input type="text" id="instructor-0" name="instructor_0" required placeholder="Instructor name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="schedule-0">Schedule:</label>
+                            <input type="text" id="schedule-0" name="schedule_0" required placeholder="e.g., Mon/Wed 10:00-11:15">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Students (Empty for new class):</label>
+                            <div class="student-list" id="students-0">
+                                <!-- Empty by default -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="add-class-btn" class="secondary-btn">
+                    <i class="fa-solid fa-plus"></i> Add Another Class
+                </button>
+
+                <div class="form-actions">
+                    <button type="submit" class="primary-btn">Save Course</button>
+                    <button type="button" class="secondary-btn" onclick="location.href='adminDashboard.html'">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 QU CSE Department | Contact: support@qu.edu.qa</p>
+    </footer>
+
+    <script src="createCourse.js"></script>
+</body>
+</html>

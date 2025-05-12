@@ -1,0 +1,19 @@
+[
+  {
+    "registrationComposite": {
+      "studentId":  "202104978",
+      "courseCode": "COMP301",
+      "semester":   "Fall 2023"
+    },
+    "sectionId": "C1"
+  },
+  {
+    "registrationComposite": {
+      "studentId":  "202104978",
+      "courseCode": "COMP401",
+      "semester":   "Fall 2023"
+    },
+    "sectionId": "C3"
+  }
+ 
+]

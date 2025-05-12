@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Submission | Qatar University</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/gradeSubmission.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <img src="Images/My-removebg-preview.png" alt="Logo" class="logo">
+        <nav>
+            <a href="instructorDashboard.html"><i class="fas fa-users"></i>Instructor Dashboard</a>
+            <a href="#" id="logoutLink"><i class="fas fa-door-open"></i>Logout</a>
+        </nav>
+      </header>
+
+    <main>
+
+        <div class="page-header">
+            <h1>Grade Submission - 
+                <span id="course-title"> 
+                </span>
+            </h1>
+        </div>
+
+        <div class="grade-entry-card">
+
+            <div class="card-header">
+                <i class="fas fa-star"></i>
+                <h2>Grade Entry Form</h2>
+            </div>
+
+        </div>
+
+        <div class="students-grades-section">
+
+            <h3>Student Grades</h3>
+            
+            <div class="students-table-container">
+                <table class="students-grades-table">
+                    <thead>
+                        <tr>
+                            <th class="student-id-col">Student ID</th>
+                            <th class="student-name-col">Student Name</th>
+                            <th class="current-grade-col">Current Grade</th>
+                            <th class="new-grade-col">New Grade</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="students-grades-container">
+                       
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="bottom-actions">
+                <button class="primary-btn" id="bottom-submit-grades-btn">Submit All Grades</button>
+                <button class="secondary-btn" id="bottom-save-draft-btn">Save Draft</button>
+                <button class="tertiary-btn" id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 QU CSE Department | Contact: support@qu.edu.qa</p>
+    </footer>
+
+    <script src="gradeSubmission.js"></script>
+</body>
+</html>

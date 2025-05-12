@@ -1,0 +1,113 @@
+//Prisma schema file
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  email    String   @id @unique
+  password String
+  role     String
+  student  Student?
+  instructor Instructor?
+  admin    Admin?
+}
+
+
+model Student {
+  studentId   String @id @unique
+  name        String
+  email       String @unique
+  password    String
+  yearOfStudy Int
+  userEmail   String @unique
+  user        User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  registrations Registration[]
+}
+model Instructor {
+  instructorId String @id @unique
+  name         String
+  email        String @unique
+  password     String
+  userEmail    String @unique
+  user         User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  sections     Section[]
+}
+
+model Admin {
+  adminId   String @id @unique
+  name      String
+  email     String @unique
+  password  String
+  userEmail String @unique
+  user      User   @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+}
+
+model Course {
+  code          String               @id
+  name          String
+  category      String
+  credits       Int
+  description   String
+  prerequisites CoursePrerequisite[] 
+  offerings     SemesterOffering[] 
+  sections      Section[] 
+  registrations Registration[] 
+}
+
+model CoursePrerequisite {
+  id               Int    @id @default(autoincrement())
+  course           Course @relation(fields: [courseCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
+  courseCode       String
+  prerequisiteCode String
+}
+
+model SemesterOffering {
+  id         Int    @id @default(autoincrement())
+  course     Course @relation(fields: [courseCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
+  courseCode String
+  semester   String
+}
+
+model Section {
+  id         String @id
+  course     Course @relation(fields: [courseCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
+  courseCode String
+  capacity   Int
+  schedule   String @default("")
+  deadline   String @default("")
+  location   String @default("")
+  instructorId String
+  instructor   Instructor  @relation(fields: [instructorId], references: [instructorId])
+  registrations Registration[] 
+  preferences   Preference[] 
+}
+
+model Registration {
+  id                 Int     @id @default(autoincrement())
+  student            Student @relation(fields: [studentId], references: [studentId], onDelete: Cascade, onUpdate: Cascade)
+  studentId          String
+  course             Course  @relation(fields: [courseCode], references: [code], onDelete: Cascade, onUpdate: Cascade)
+  courseCode         String
+  semester           String
+  section            Section @relation(fields: [sectionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  sectionId          String
+  status             String
+  grade              String? @default("")
+  creditsEarned      Int?    @default(0)
+  registrationStatus String? @default("")
+
+  preferences Preference[]
+}
+
+model Preference {
+  id             Int          @id @default(autoincrement())
+  registration   Registration @relation(fields: [registrationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  registrationId Int
+  section        Section      @relation(fields: [sectionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  sectionId      String
+}
